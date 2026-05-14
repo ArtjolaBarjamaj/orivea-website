@@ -1,0 +1,93 @@
+/* Responsive helpers for xs and sm breakpoints */
+@media (max-width: 640px) {
+  .xs\:text-xs { font-size: 0.75rem !important; }
+  .xs\:text-sm { font-size: 0.875rem !important; }
+  .xs\:text-lg { font-size: 1.125rem !important; }
+  .xs\:p-2 { padding: 0.5rem !important; }
+  .xs\:max-w-\[70px\] { max-width: 70px !important; }
+  .xs\:gap-2 { gap: 0.5rem !important; }
+}
+@media (max-width: 768px) {
+  .sm\:text-xl { font-size: 1.25rem !important; }
+  .sm\:text-2xl { font-size: 1.5rem !important; }
+  .sm\:text-3xl { font-size: 1.875rem !important; }
+  .sm\:text-base { font-size: 1rem !important; }
+  .sm\:max-w-\[90vw\] { max-width: 90vw !important; }
+  .sm\:max-w-\[90px\] { max-width: 90px !important; }
+  .sm\:p-4 { padding: 1rem !important; }
+  .sm\:py-1 { padding-top: 0.25rem !important; padding-bottom: 0.25rem !important; }
+  .sm\:px-2 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+  .sm\:gap-4 { gap: 1rem !important; }
+  .sm\:gap-6 { gap: 1.5rem !important; }
+}
+/* Topbar custom style */
+.topbar-custom {
+  background: #b0a69c;
+  box-shadow: 0 5px 8px #887f76;
+}
+
+@media (max-width: 900px) {
+  .topbar-custom {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .topbar-links {
+    gap: 2rem !important;
+  }
+  .topbar-logo {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .topbar-title {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar-custom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  .topbar-links {
+    gap: 1rem !important;
+    flex-wrap: wrap !important;
+    margin-top: 0.5rem !important;
+  }
+  .topbar-logo {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .topbar-title {
+    font-size: 1rem !important;
+  }
+}
+@import "tailwindcss";
+
+
+:root {
+  --background: #B0A69C; /* Island Fossil */
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #8c7c6b; /* A darker shade for dark mode */
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}

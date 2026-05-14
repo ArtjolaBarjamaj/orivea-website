@@ -1,0 +1,7 @@
+/* Place this in your global CSS or import it in your main layout */
+.hero-bg {
+  background-image: url('/orivea_background_web.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

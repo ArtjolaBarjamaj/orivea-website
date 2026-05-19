@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Topbar from "./components/Topbar";
-import Footer from "./components/Footer";
+import "../lib/globals.css";
+import Topbar from "../components/sections/layout/Topbar";
+import Footer from "../components/sections/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
         <Topbar />
 
-        <main className="flex-1">
+        <main className="flex-1" style={{ paddingTop: "var(--topbar-height)" }}>
           {children}
         </main>
 

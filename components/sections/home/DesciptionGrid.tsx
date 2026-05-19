@@ -2,6 +2,7 @@
 
 
 import Image from "next/image";
+import path from "path";
 export default function DesciptionGrid() {
 	return (
 		<section className="w-full bg-[#b1aaa0] py-14 flex flex-col items-center">

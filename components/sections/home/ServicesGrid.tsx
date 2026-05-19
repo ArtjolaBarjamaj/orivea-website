@@ -85,7 +85,7 @@ export default function ProductGrid({ addToCart, cart }: any) {
             <h2 className="text-4xl font-serif text-zinc-800 mb-10 text-center md:text-3xl sm:text-2xl">Our Services</h2>
             <div className="w-full max-w-6xl py-10 flex flex-col items-center justify-center gap-8 sm:py-6">
                 <div
-                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full justify-items-center"
+                    className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 w-full justify-items-center"
                 >
                     {products.slice(start, start + visibleCount).map((product: any) => {
                         const usageMap: Record<number, string> = {
@@ -98,31 +98,31 @@ export default function ProductGrid({ addToCart, cart }: any) {
                         const usage = usageMap[product.id] || "Use as directed.";
                         const count = cart?.filter((item: any) => item.id === product.id).length || 0;
                         return (
-                            <div className="relative group cursor-help w-full max-w-xs" key={product.id}>
+                            <div className="relative group cursor-help w-full min-w-0 max-w-xs" key={product.id}>
                                 <div
-                                    className="relative overflow-visible bg-white rounded-lg shadow p-8 flex flex-col items-center w-full max-w-xs overflow-hidden group sm:p-4 xs:p-2"
+                                    className="relative overflow-visible bg-white rounded-lg shadow p-4 md:p-8 flex flex-col items-center w-full max-w-xs overflow-hidden group"
                                 >
                                     <Image
                                         src={product.image}
                                         alt={product.name}
                                         width={200}
                                         height={200}
-                                        className="object-cover rounded mb-4 w-full max-w-[120px] sm:max-w-[180px] xs:max-w-[70px]"
+                                        className="object-cover rounded mb-4 w-full max-w-[90px] md:max-w-[180px]"
                                     />
                                     <div className="flex items-center gap-2 mb-2 w-full justify-center">
-                                        <h3 className="text-2xl font-serif text-zinc-800 z-20 text-center md:text-xl sm:text-lg">{product.name}</h3>
+                                        <h3 className="text-base md:text-xl font-serif text-zinc-800 z-20 text-center">{product.name}</h3>
                                     </div>
-                                    <span className="text-lg text-zinc-700 mb-4 z-20 text-center md:text-base sm:text-sm">{product.description}</span>
+                                    <span className="text-sm md:text-base text-zinc-700 mb-4 z-20 text-center">{product.description}</span>
                                     <div className="">
                                         <button
                                             style={{padding: '10px 20px !important' }}
-                                            className="flex-1 p-5 bg-[#B0A69C] text-white rounded shadow hover:bg-[#a3927d] transition md:px-2 md:py-1 sm:text-sm"
+                                            className="flex-1 p-3 md:p-5 bg-[#B0A69C] text-white rounded shadow hover:bg-[#a3927d] transition text-xs md:text-sm"
                                             onClick={() => addToCart(product)}
                                         >
                                             View Productes List
                                         </button>
                                         {count > 0 && (
-                                            <span className="ml-2 px-3 py-2 bg-[#B0A69C] text-white rounded-full font-bold text-lg min-w-[36px] text-center md:text-base sm:text-sm">
+                                            <span className="ml-2 px-3 py-2 bg-[#B0A69C] text-white rounded-full font-bold text-sm md:text-base min-w-[36px] text-center">
                                                 {count}
                                             </span>
                                         )}

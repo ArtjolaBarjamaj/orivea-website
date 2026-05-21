@@ -1,187 +1,83 @@
 "use client";
+import Image, { type StaticImageData } from "next/image";
+import servicesData from "../../../assets/productes_data/services.json";
+import oilImage from "../../../assets/public/oil.png";
+import powderImage from "../../../assets/public/powder_service.png";
+import masksImage from "../../../assets/public/masks_service.png";
+import scrubImage from "../../../assets/public/scrub_service.png";
+import useRevealOnScroll from "@/hooks/useRevealOnScroll";
 
+type SubProduct = {
+    id: number;
+    name: string;
+    description: string;
+    price: string;
+    image: string;
+};
 
-import Image from "next/image";
-import { useState } from "react";
+type ServiceProduct = {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    productes?: SubProduct[];
+};
 
-export const products = [
-    {
-        id: 1,
-        name: "Oils",
-        description: "A blend of natural oils to nourish your skin.",
-        price: "$29.00",
-        image: "/serum.png",
-        productes: [
-            {
-                id: 1,
-                name: "Argan Oil 15ml",
-                description: "A nourishing oil to hydrate and revitalize your skin.",
-                price: "$29.00",
-                image: "/mask1.jpg",
-            },
-            {
-                id: 2,
-                name: "Argan Oil 30ml",
-                description: "A nourishing oil to hydrate and revitalize your skin.",
-                price: "$29.00",
-                image: "/mask1.jpg",
-            }
-        ]
-    },
-    {
-        id: 2,
-        name: "Powders",
-        description: "A variety of natural powders for your skincare routine.",
-        price: "$29.00",
-        image: "/powder.png",
-    },
-    {
-        id: 3,
-        name: "Masks",
-        description: "A variety of natural masks for your skincare routine.",
-        price: "$29.00",
-        image: "/oil.png",
-        productes: [
-            {
-                id: 1,
-                name: "Hydrating Mask",
-                description: "A nourishing mask to hydrate and revitalize your skin.",
-                price: "$29.00",
-                image: "/mask1.jpg",
-            }]
-    },
-    {
-        id: 4,
-        name: "Scrubs",
-        description: "Exfoliate your skin gently.",
-        price: "$19.00",
-        image: "/scrub.jpg",
-    },
-    {
-        id: 5,
-        name: "Soaps",
-        description: "Soothe and refresh your skin.",
-        price: "$21.00",
-        image: "/soap.jpg",
-    },
-];
+const serviceImageMap: Record<string, StaticImageData> = {
+    "oil.png": oilImage,
+    "powder_service.png": powderImage,
+    "masks_service.png": masksImage,
+    "scrub_service.png": scrubImage,
+    "soap.jpg": powderImage,
+};
 
-export default function ProductGrid({ addToCart, cart }: any) {
+function resolveServiceImage(imagePath: string): StaticImageData {
+    const key = imagePath.replace(/^(\.\/|\/)+/, "").toLowerCase();
+    return serviceImageMap[key] ?? oilImage;
+}
 
-    const [start, setStart] = useState(0);
-    const visibleCount = 3;
-    const canScrollLeft = start > 0;
-    const canScrollRight = start + visibleCount < products.length;
-
-    const handleLeft = () => {
-        if (canScrollLeft) setStart(start - 1);
-    };
-    const handleRight = () => {
-        if (canScrollRight) setStart(start + 1);
-    };
+export default function ServicesGrid() {
+    const services = servicesData.services as ServiceProduct[];
+    const { ref, isVisible } = useRevealOnScroll<HTMLElement>(0.2);
 
     return (
-        <section className="w-full py-10 px-4 bg-white flex flex-col items-center">
-            <h2 className="text-4xl font-serif text-zinc-800 mb-10 text-center md:text-3xl sm:text-2xl">Our Services</h2>
-            <div className="w-full max-w-6xl py-10 flex flex-col items-center justify-center gap-8 sm:py-6">
-                <div
-                    className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 w-full justify-items-center"
-                >
-                    {products.slice(start, start + visibleCount).map((product: any) => {
-                        const usageMap: Record<number, string> = {
-                            1: "Apply a few drops to clean skin every morning and night.",
-                            2: "Gently massage onto face after cleansing, morning and evening.",
-                            3: "Massage onto damp skin after showering for best results.",
-                            4: "Use twice daily to cleanse your face before applying other products.",
-                            5: "Apply with a cotton pad after cleansing to refresh and tone skin.",
-                        };
-                        const usage = usageMap[product.id] || "Use as directed.";
-                        const count = cart?.filter((item: any) => item.id === product.id).length || 0;
-                        return (
-                            <div className="relative group cursor-help w-full min-w-0 max-w-xs" key={product.id}>
-                                <div
-                                    className="relative overflow-visible bg-white rounded-lg shadow p-4 md:p-8 flex flex-col items-center w-full max-w-xs overflow-hidden group"
-                                >
-                                    <Image
-                                        src={product.image}
-                                        alt={product.name}
-                                        width={200}
-                                        height={200}
-                                        className="object-cover rounded mb-4 w-full max-w-[90px] md:max-w-[180px]"
-                                    />
-                                    <div className="flex items-center gap-2 mb-2 w-full justify-center">
-                                        <h3 className="text-base md:text-xl font-serif text-zinc-800 z-20 text-center">{product.name}</h3>
-                                    </div>
-                                    <span className="text-sm md:text-base text-zinc-700 mb-4 z-20 text-center">{product.description}</span>
-                                    <div className="">
-                                        <button
-                                            style={{padding: '10px 20px !important' }}
-                                            className="flex-1 p-3 md:p-5 bg-[#B0A69C] text-white rounded shadow hover:bg-[#a3927d] transition text-xs md:text-sm"
-                                            onClick={() => addToCart(product)}
-                                        >
-                                            View Productes List
-                                        </button>
-                                        {count > 0 && (
-                                            <span className="ml-2 px-3 py-2 bg-[#B0A69C] text-white rounded-full font-bold text-sm md:text-base min-w-[36px] text-center">
-                                                {count}
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-                                <div
-                                    className="pointer-events-none absolute left-1/2 top-full z-30 w-72 -translate-x-1/2 -mt-4 px-4 py-3 rounded-2xl shadow-xl border border-[#e5e2de] bg-white text-[#7c6c5c] text-center opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 ease-in-out"
-                                    style={{
-                                        boxShadow: '0 8px 32px 0 rgba(176,166,156,0.18)',
-                                    }}
-                                >
-                                    {/* Arrow (tail) */}
-                                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 flex items-center justify-center">
-                                        <svg width="24" height="12" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 12C13.1046 12 24 0 24 0H0C0 0 10.8954 12 12 12Z" fill="white" stroke="#e5e2de" strokeWidth="1" />
-                                        </svg>
-                                    </span>
-                                    <div className="flex items-center justify-center gap-2 mb-1 mt-2">
-                                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#B0A69C" strokeWidth="2">
-                                            <circle cx="12" cy="12" r="10" />
-                                            <line x1="12" y1="8" x2="12" y2="12" />
-                                            <circle cx="12" cy="16" r="1" />
-                                        </svg>
-                                        <span className="text-base font-semibold font-serif">Hint</span>
-                                    </div>
-                                    {product.productes && product.productes.length > 0 ? (
-                                        <ul className="text-left mt-2">
-                                            {product.productes.map((sub: any) => (
-                                                <li key={sub.id} className="text-sm font-light leading-relaxed mb-1">
-                                                    <span className="font-semibold">{sub.name}:</span> <span className="text-[#B0A69C]">{sub.price}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    ) : (
-                                        <p className="text-sm font-light leading-relaxed">{usage}</p>
-                                    )}
-                                </div>
-                            </div>
-                        );
-                    })}
+        <section ref={ref} className={`reveal-section w-full bg-[#fff8f5] py-10 md:py-14 ${isVisible ? "is-visible" : ""}`}>
+            <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
+                <div className="mx-auto mb-7 md:mb-10 max-w-xl text-center">
+                    <p className="anim-fade-up text-xs sm:text-[11px] uppercase tracking-[0.2em] text-[#8f6f52]">Our Services</p>
+                    <h2 className="anim-fade-up anim-delay-1 mt-2 font-serif text-[2rem] sm:text-3xl md:text-4xl text-[#241d16]">Our Services</h2>
                 </div>
-                {/* Butonat left/right jashtë grid-it, të qendruara */}
-                <div className="flex justify-center items-center gap-8 mt-8">
-                    <button
-                        onClick={handleLeft}
-                        disabled={!canScrollLeft}
-                        className="bg-white/70 hover:bg-white text-3xl rounded-full w-12 h-12 flex items-center justify-center shadow disabled:opacity-30 disabled:cursor-not-allowed"
-                        aria-label="Scroll left"
-                    >
-                        &#8592;
-                    </button>
-                    <button
-                        onClick={handleRight}
-                        disabled={!canScrollRight}
-                        className="bg-white/70 hover:bg-white text-3xl rounded-full w-12 h-12 flex items-center justify-center shadow disabled:opacity-30 disabled:cursor-not-allowed"
-                        aria-label="Scroll right"
-                    >
-                        &#8594;
-                    </button>
+
+                <div className="mx-auto grid max-w-[1020px] grid-cols-1 gap-7 md:grid-cols-3 md:gap-7">
+                    {services.slice(0, 3).map((service, index) => (
+                        <article
+                            key={service.id}
+                            className={`w-full bg-transparent anim-fade-up ${index === 0 ? "anim-delay-1" : index === 1 ? "anim-delay-2" : "anim-delay-3"}`}
+                        >
+                            <div className="anim-hover-lift relative aspect-[3/3] w-full overflow-hidden bg-[#e8dfd7] md:aspect-[4/5]">                                <div className="relative w-[80%] h-[80%] mx-auto mt-[12.5%]">
+                                <Image
+                                    src={resolveServiceImage(service.image)}
+                                    alt={service.name}
+                                    fill
+                                    sizes="(max-width: 768px) 80vw, 33vw"
+                                    className="object-cover"
+                                />
+                            </div>
+                            </div>
+                            <div className="pt-3">
+                                <h3 className="font-serif text-[1.95rem] sm:text-[1.65rem] leading-[1.05] text-[#2f251d]">{service.name}</h3>
+                                <p className="mt-2 text-[13px] sm:text-[11px] leading-[1.65] text-[#6f655b]">
+                                    {service.description}
+                                </p>
+                                <button
+                                    type="button"
+                                    className="mt-3 text-[11px] sm:text-[10px] uppercase tracking-[0.12em] text-[#7e5e42] underline underline-offset-4 hover:text-[#5f432c]"
+                                >
+                                    View Products
+                                </button>
+                            </div>
+                        </article>
+                    ))}
                 </div>
             </div>
         </section>

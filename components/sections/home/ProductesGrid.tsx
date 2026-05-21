@@ -1,63 +1,87 @@
 import React from "react";
+import Image from "next/image";
+import FassiPowder from "../../../assets/public/nila_fassi_powder.png";
+import TbrimaMask from "../../../assets/public/tbira_mask.png";
+import AkerFassiMask from "../../../assets/public/aker_fasi_mask.png";
+import NilaMask from "../../../assets/public/nila_mask.png";
+import useRevealOnScroll from "@/hooks/useRevealOnScroll";
 
 const bestSellers = [
   {
-    title: "Elixora Hydra-Serum",
-    price: "$48.00",
-    image: "/Fassi_Powder.png", // Replace with your actual image paths
+    title: "Liquid Gold Argan",
+    price: "$72.00",
+    image: FassiPowder,
+    rating: 5,
+    badge: "NEW",
+  },
+  {
+    title: "Rhassoul Clay Mask",
+    price: "$58.00",
+    image: TbrimaMask,
     rating: 5,
   },
   {
-    title: "Luxe Glow Cream",
-    price: "$55.00",
-    image: "/Tbrima_Mask.png",
+    title: "Damask Rose Mist",
+    price: "$42.00",
+    image: AkerFassiMask,
     rating: 5,
+    badge: "POPULAR",
   },
   {
-    title: "Lip Tint",
-    price: "$24.00",
-    image: "/Aker_Fassi_Mask.png",
-    rating: 5,
-  },
-  {
-    title: "Lip Tint Rec Cream",
-    price: "$24.00",
-    image: "/Nila_Mask.png",
+    title: "Nilotica Shea Balm",
+    price: "$35.00",
+    image: NilaMask,
     rating: 5,
   },
 ];
 
 const BestSellersGrid = () => {
+  const { ref, isVisible } = useRevealOnScroll<HTMLElement>(0.2);
+
   return (
-    <section className="py-20 px-8 bg-[#b1aaa0] shadow-md">
-      <h2 className="text-2xl font-semibold text-center mb-8 text-white">Our Productes</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 justify-items-center py-8">
+    <section ref={ref} className={`reveal-section bg-[#f8f4f1] px-4 py-10 w-full mx-auto ${isVisible ? "is-visible" : ""}`}>
+      <div className="mb-4">
+        <p className="anim-fade-up text-[10px] uppercase tracking-[0.18em] text-[#b49c7a] mb-1">Best Sellers</p>
+        <h2 className="anim-fade-up anim-delay-1 font-serif italic text-[1.35rem] sm:text-2xl text-[#2f251d] mb-1 leading-tight">The Essentials</h2>
+        <a href="#" className="anim-fade-up anim-delay-2 text-[11px] uppercase tracking-[0.14em] text-[#1a3a5a] underline underline-offset-4 hover:text-[#5f432c] font-medium">Shop All Products</a>
+      </div>
+      <div className="grid grid-cols-2 gap-x-6 gap-y-8 mt-6">
         {bestSellers.map((product, idx) => (
           <div
             key={product.title}
-            className="bg-[#eeebe5] rounded-2xl shadow-lg px-4 md:px-10 py-3 w-full max-w-[170px] md:max-w-[240px] flex flex-col items-center border border-gray-100 hover:shadow-xl transition-shadow relative"
+            className={`anim-fade-up flex flex-col items-start p-3 ${idx === 0 ? "anim-delay-1" : idx === 1 ? "anim-delay-2" : "anim-delay-3"}`}
           >
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-24 h-24 md:w-40 md:h-40 object-cover rounded-lg mb-4 mt-6"
-            />
-            <div className="text-center">
-              <h3 className="text-sm md:text-lg font-medium text-gray-700 mb-1">{product.title}</h3>
-              <div className="text-primary text-sm md:text-base font-semibold mb-1">{product.price}</div>
-              <button
-                className="bg-[#b1aaa0] text-[#4b3f2d] px-3 md:px-5 py-2 rounded-full text-xs md:text-sm font-semibold shadow-md hover:bg-[#a89e91] hover:text-[#2d261a] transition-colors duration-200 border border-[#d6d1c7] mt-2"
-              >
-                Add to Cart
-              </button>
+            {/* Image with badge and flat bg */}
+            <div className="anim-hover-lift relative w-[100%] h-[110px] bg-[#e5e1db] mb-2 flex items-center justify-center">
+              {product.badge && (
+                <span className="absolute left-2 top-2 bg-[#222] text-[9px] text-white px-2 py-[2px] font-semibold uppercase tracking-wider" style={{borderRadius:0}}>
+                  {product.badge}
+                </span>
+              )}
+              <Image
+                src={product.image}
+                alt={product.title}
+                width={90}
+                height={80}
+                className="object-contain w-[90px] h-[80px]"
+                priority
+              />
+            </div>
+            {/* Info */}
+            <h3 className="text-[13px] font-serif text-[#2f251d] font-semibold leading-tight mb-1 mt-1">{product.title}</h3>
+            <div className="text-[12px] text-[#7c6c5c] font-medium mb-1">{product.price}</div>
+            <div className="flex items-center gap-[2px] mb-1">
+              {Array.from({ length: product.rating }).map((_, i) => (
+                <span key={i} className="text-[#b49c7a] text-xs">★</span>
+              ))}
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-center mt-10">
+      <div className="mt-8 flex justify-center">
         <button
-          className="bg-white text-[#4b3f2d] px-8 py-3 rounded-full text-lg font-semibold shadow-md hover:bg-[#e5e1db] hover:text-[#2d261a] transition-colors duration-200 border border-[#d6d1c7]"
-          // TODO: Add navigation logic here if needed
+          type="button"
+          className="anim-fade-up anim-delay-3 border border-[#b49c7a] px-5 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-[#5f432c] transition-colors hover:bg-[#ede6de]"
         >
           View All Productes
         </button>

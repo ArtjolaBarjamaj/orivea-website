@@ -1,0 +1,59 @@
+{
+    "services": [
+        {
+            "id": 1,
+            "name": "Oils",
+            "description": "A blend of natural oils to nourish your skin.",
+            "image": "./oil.png",
+            "productes": [
+                {
+                    "id": 1,
+                    "name": "Argan Oil 15ml",
+                    "description": "A nourishing oil to hydrate and revitalize your skin.",
+                    "price": "$29.0",
+                    "image": "/mask1.jpg"
+                },
+                {
+                    "id": 2,
+                    "name": "Argan Oil 30ml",
+                    "description": "A nourishing oil to hydrate and revitalize your skin.",
+                    "price": "$29.00",
+                    "image": "/mask1.jpg"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Powders",
+            "description": "A variety of natural powders for your skincare routine.",
+            "image": "./powder_service.png"
+        },
+        {
+            "id": 3,
+            "name": "Masks",
+            "description": "A variety of natural masks for your skincare routine.",
+            "image": "./masks_service.png",
+            "productes": [
+                {
+                    "id": 1,
+                    "name": "Hydrating Mask",
+                    "description": "A nourishing mask to hydrate and revitalize your skin.",
+                    "price": "$29.00",
+                    "image": "./mask1.jpg"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Scrubs",
+            "description": "Exfoliate your skin gently.",
+            "image": "./scrub_service.png"
+        },
+        {
+            "id": 5,
+            "name": "Soaps",
+            "description": "Soothe and refresh your skin.",
+            "image": "/soap.jpg"
+        }
+    ]
+}

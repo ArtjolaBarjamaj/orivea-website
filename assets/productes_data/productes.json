@@ -1,0 +1,62 @@
+[ 
+	{
+		"id": 1,
+		"name": "Hydrating Face Cream",
+		"description": "Daily moisturizer with hyaluronic acid for soft, hydrated skin.",
+		"price": 24.99,
+		"images": [
+			"assets/images/products/hydrating-face-cream-1.jpg",
+			"assets/images/products/hydrating-face-cream-2.jpg"
+		],
+		"content": "50 ml",
+		"usage": "Apply to clean face morning and evening with gentle circular motions."
+	},
+	{
+		"id": 2,
+		"name": "Vitamin C Serum",
+		"description": "Brightening serum that helps improve uneven tone and dullness.",
+		"price": 29.5,
+		"images": [
+			"assets/images/products/vitamin-c-serum-1.jpg",
+			"assets/images/products/vitamin-c-serum-2.jpg"
+		],
+		"content": "30 ml",
+		"usage": "Use 3-4 drops on clean skin before moisturizer, once daily."
+	},
+	{
+		"id": 3,
+		"name": "Gentle Cleansing Gel",
+		"description": "Mild gel cleanser that removes impurities without drying the skin.",
+		"price": 18,
+		"images": [
+			"assets/images/products/gentle-cleansing-gel-1.jpg",
+			"assets/images/products/gentle-cleansing-gel-2.jpg"
+		],
+		"content": "200 ml",
+		"usage": "Massage onto damp skin, then rinse thoroughly with lukewarm water."
+	},
+	{
+		"id": 4,
+		"name": "Nourishing Body Lotion",
+		"description": "Rich body lotion with shea butter for long-lasting hydration.",
+		"price": 21.75,
+		"images": [
+			"assets/images/products/nourishing-body-lotion-1.jpg",
+			"assets/images/products/nourishing-body-lotion-2.jpg"
+		],
+		"content": "250 ml",
+		"usage": "Apply generously to body after showering or whenever skin feels dry."
+	},
+	{
+		"id": 5,
+		"name": "SPF 50 Sun Fluid",
+		"description": "Lightweight broad-spectrum sunscreen for daily UV protection.",
+		"price": 26.4,
+		"images": [
+			"assets/images/products/spf50-sun-fluid-1.jpg",
+			"assets/images/products/spf50-sun-fluid-2.jpg"
+		],
+		"content": "40 ml",
+		"usage": "Apply as the final step of morning skincare, 15 minutes before sun exposure."
+	}
+]

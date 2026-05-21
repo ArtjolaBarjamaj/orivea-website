@@ -2,29 +2,37 @@
 
 
 import Image from "next/image";
+import brandImage from "../../../assets/public/individual.png";
+import useRevealOnScroll from "@/hooks/useRevealOnScroll";
 
 export default function BrandInfoGrid() {
+	const { ref, isVisible } = useRevealOnScroll<HTMLElement>(0.2);
 	return (
-		<section className="w-full bg-[#f5f3ef] py-15 flex justify-center items-center min-h-[480px]">
-			<div className="w-full max-w-6xl flex flex-col md:flex-row h-full min-h-[480px]  overflow-hidden">
-				{/* Djathtas: Fotoja */}
-				<div className="flex-1 flex justify-center items-center relative min-h-[320px] p-8">
+		<section ref={ref} className={`reveal-section w-full bg-[#fef2e7] py-12 flex justify-center items-center ${isVisible ? "is-visible" : ""}`}>
+			<div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto flex flex-col items-center bg-[#fef2e7]">
+				{/* Image on top */}
+				<div className="anim-fade-up anim-hover-lift w-full aspect-square bg-[#fef2e7] rounded mb-5 overflow-hidden flex items-center justify-center" style={{ minHeight: 180, minWidth: 180 }}>
 					<Image
-						src="/individual photo.png"
+						src={brandImage}
 						alt="Orivea Founder"
-						width={600}
-						height={420}
-						className="rounded-xl shadow-xl object-cover max-h-[420px] w-[400px] z-10"
+						width={260}
+						height={260}
+						className="object-contain w-full h-full"
 						priority
 					/>
 				</div>
-				{/* Majtas: Teksti dhe përmbajtja ekzistuese */}
-				<div className="flex-1 flex flex-col justify-center items-center md:items-start bg-[#f8f4f1] px-8 py-16 md:py-0">
-					<h3 className="text-2xl font-serif text-[#7c6c5c] mb-4 font-semibold">About Orivea</h3>
-					<p className="text-[#7c6c5c] text-lg font-light leading-relaxed mb-8 max-w-md text-center md:text-left">
-						Orivea është një brand i dedikuar për kujdesin natyral të lëkurës, i frymëzuar nga natyra dhe traditat më të mira të përkujdesjes. Produktet tona janë të formuluara me përbërës organikë, pa parabene dhe të pa testuara në kafshë, për një rutinë të pastër, të sigurt dhe të qëndrueshme. Zbulo bukurinë natyrale me Orivea.
-					</p>
-				</div>
+				{/* Content below image */}
+				<p className="anim-fade-up text-[10px] uppercase tracking-[0.18em] text-[#b49c7a] mb-2">Heritage</p>
+				<h3 className="anim-fade-up anim-delay-1 font-serif italic text-[1.35rem] sm:text-2xl text-[#2f251d] mb-3 leading-tight">The Soul of Orivea</h3>
+				<p className="anim-fade-up anim-delay-2 text-[#7c6c5c] text-[13px] leading-[1.7] mb-4 text-center">
+					Orivea është një brand i dedikuar për kujdesin natyral të lëkurës, i frymëzuar nga natyra dhe traditat më të mira të përkujdesjes. Produktet tona janë të formuluara me përbërës organikë, pa parabene dhe të pa testuara në kafshë, për një rutinë të pastër, të sigurt dhe të qëndrueshme. Zbulo bukurinë natyrale me Orivea.
+				</p>
+				<p className="anim-fade-up anim-delay-2 text-[11px] text-[#7c6c5c] italic border-l-2 border-[#b49c7a] pl-3 mb-5 max-w-xs mx-auto">
+					"Skincare is not just a routine; it is a sacred pause in a loud world."
+				</p>
+				<button className="anim-fade-up anim-delay-3 mt-2 px-5 py-2 border border-[#b49c7a] text-[11px] tracking-[0.12em] uppercase text-[#7c6c5c] bg-transparent rounded hover:bg-[#ede6de] transition">
+					Our Full Story
+				</button>
 			</div>
 		</section>
 	);

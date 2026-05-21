@@ -1,7 +1,49 @@
-/* Place this in your global CSS or import it in your main layout */
 .hero-bg {
-  background-image: url('/orivea_background_web.png');
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-image: url("../assets/public/orivea_background_web.png");
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(to right, #00000094 5%, #0000004d 47%, #00000014 100%), 
+    linear-gradient(to top, #00000085 5%, #00000029 47%, #0000000a 70%);
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  right: clamp(0.8rem, 3vw, 2.5rem);
+  top: clamp(0.6rem, 2.3vw, 2.2rem);
+  border: 1px solid rgba(255, 232, 194, 0.42);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+@media (max-width: 639px) {
+  .hero-bg.mobile-home-bg {
+    background-image: url("../assets/public/orivea_home_bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-bg.mobile-home-bg::before {
+    background:
+      linear-gradient(to right, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.3) 42%, rgba(0, 0, 0, 0.08) 100%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.16) 42%, rgba(0, 0, 0, 0.04) 100%);
+  }
+
+  .hero-bg.mobile-home-bg::after {
+    right: 0.8rem;
+    top: 0.7rem;
+  }
 }

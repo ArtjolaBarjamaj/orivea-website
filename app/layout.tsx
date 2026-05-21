@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
         <Topbar />
 
-        <main className="flex-1" style={{ paddingTop: "var(--topbar-height)" }}>
+        <main className="flex-1">
           {children}
         </main>
 

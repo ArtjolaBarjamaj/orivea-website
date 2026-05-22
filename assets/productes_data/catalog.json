@@ -1,0 +1,307 @@
+{
+  "products": [
+    {
+      "id": "prd-argan-elixir-15",
+      "name": "Argan Oil 15ml",
+      "description": "Ideale per: Dry skin, damaged hair, dehydration",
+      "fullDescription": "Vaji i arganit është një vaj 100% natyral, i përftuar me presim të ftohtë nga bërthamat e pemës Argania Spinosa në Marok. I njohur si “ari i lëngshëm”, ai është i pasur me Vitaminë E, acide yndyrore esenciale dhe antioksidantë që ndihmojnë në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+      "price": 900,
+      "image": "/argan_oil_double_white.png",
+      "gallery": [
+        "/argan_oil_double_white.png",
+        "/argan_oil_30_white.png",
+        "/argan_oil_double_yellow.png"
+      ],
+      "content": "15 ml",
+      "usage": "Fytyra: Aplikoni 2–3 pika në lëkurë të pastër dhe masazhoni lehtë.Flokët: Vendoseni në maja ose përdoreni si trajtim para larjes.Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
+      "serviceIds": [
+        "svc-oils"
+      ]
+    },
+    {
+      "id": "prd-argan-elixir-30",
+      "name": "Argan Oil 30ml",
+      "description": "Ideale per: Dry skin, damaged hair, dehydration",
+      "fullDescription": "Vaji i arganit është një vaj 100% natyral, i përftuar me presim të ftohtë nga bërthamat e pemës Argania Spinosa në Marok. I njohur si “ari i lëngshëm”, ai është i pasur me Vitaminë E, acide yndyrore esenciale dhe antioksidantë që ndihmojnë në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+      "price": 1200,
+      "image": "/argan_oil_30_white.png",
+      "gallery": [
+        "/argan_oil_30_white.png",
+        "/argan_oil_double_yellow.png",
+        "/argan_oil_double_white.png"
+      ],
+      "content": "30 ml",
+      "usage": "Fytyra: Aplikoni 2–3 pika në lëkurë të pastër dhe masazhoni lehtë.Flokët: Vendoseni në maja ose përdoreni si trajtim para larjes.Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
+      "serviceIds": [
+        "svc-oils"
+      ]
+    },
+    {
+      "id": "prd-argan-elixir-50",
+      "name": "Argan Oil 50ml",
+      "description": "ideale per: Dry skin, damaged hair, dehydration",
+      "fullDescription": "Vaji i arganit është një vaj 100% natyral, i përftuar me presim të ftohtë nga bërthamat e pemës Argania Spinosa në Marok. I njohur si “ari i lëngshëm”, ai është i pasur me Vitaminë E, acide yndyrore esenciale dhe antioksidantë që ndihmojnë në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+      "price": 1800,
+      "image": "/argan_oil_50_white.png",
+      "gallery": [
+        "/argan_oil_50_white.png",
+        "/argan_oil_double_white.png",
+        "/argan_oil_double_yellow.png"
+      ],
+      "content": "50 ml",
+      "usage": "Fytyra: Aplikoni 2–3 pika në lëkurë të pastër dhe masazhoni lehtë.Flokët: Vendoseni në maja ose përdoreni si trajtim para larjes.Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
+      "serviceIds": [
+        "svc-oils"
+      ]
+    },
+    {
+      "id": "prd-nila-powder",
+      "name": "Nila Powder 100gr",
+      "description": "Ideale per: Lekure te zbehte, ton jo uniform, rutina body care.",
+      "fullDescription": "Pluhuri Nila është një produkt tradicional maroken i përdorur për ndriçimin dhe zbutjen e lëkurës. I njohur për ngjyrën karakteristike blu, përdoret kryesisht në ritualet tradicionale të kujdesit të trupit.",
+      "price": 1300,
+      "image": "/nila_powder_white.png",
+      "gallery": [
+        "/nila_powder_white.png",
+        "/nila_powder_plate.png",
+        "/nila_powder_yellow.png"
+      ],
+      "content": "100 gr",
+      "usage": "Përziejeni me ujë trëndafili ose kos deri sa të krijohet një pastë homogjene. Aplikojeni për 10–15 minuta dhe shpëlajeni me ujë të vakët.",
+      "serviceIds": [
+        "svc-powders"
+      ]
+    },
+    {
+      "id": "prd-prickly-pear-seed-oil",
+      "name": "Prickly Pear Seed Oil 30ml",
+      "description": "Ideale per: Lekure matue, te dehidratuar, pa shkelqim",
+      "fullDescription": "Një vaj luksoz dhe shumë i lehtë, i përftuar nga farat e Opuntia Ficus-Indica. I njohur për përmbajtjen e lartë të Vitaminës E dhe acideve yndyrore esenciale, ky vaj konsiderohet një nga vajrat më të çmuar për kujdesin e lëkurës.",
+      "price": 2700,
+      "image": "/prickly_pear_serum_white.png",
+      "gallery": [
+        "/prickly_pear_serum_white.png",
+        "/prickly_pear_3_white.png",
+        "/prickly_peer_with_bg.png"
+      ],
+      "content": "30 ml",
+      "usage": "Fytyra: Aplikoni disa pika në mbrëmje mbi lëkurë të pastër.Flokët: Vendoseni në maja ose si maskë para larjes.Thonjtë: Masazhoni kutikulat çdo ditë.",
+      "serviceIds": [
+        "svc-oils"
+      ]
+    },
+    {
+      "id": "prd-nila-mask",
+      "name": "Nila Mask 200gr",
+      "description": "Ideale per: Lekure pa jete, ton jo uniform, self care rutine.",
+      "fullDescription": "Produkte tradicionale marokene të formuluara me pluhur indigo blu për pastrim dhe ndriçim të lëkurës.",
+      "price": 1800,
+      "image": "/nila-mask-white.png",
+      "gallery": [
+        "/nila-mask-white.png",
+        "/nila-mask-open.png",
+        "/nila_mask_yellow.png"
+      ],
+      "content": "200 gr",
+      "usage": "Aplikojeni në fytyrë ose trup për 10–20 minuta dhe më pas shpëlajeni. Përdorni hidratues pas aplikimit.",
+      "serviceIds": [
+        "svc-masks"
+      ]
+    },
+    {
+      "id": "prd-aker-fassi-powder",
+      "name": "Aker Fassi Powder 100gr",
+      "description": "Ideale per: Glow natyral, kujdes per buzet, rutina body care.",
+      "fullDescription": "Jep ngjyrë natyrale buzëve dhe faqeve.Ndihmon në përmirësimin e shkëlqimit natyral të fytyrës.Përmban antioksidantë natyralë",
+      "price": 1100,
+      "image": "/aker_fassi_white.png",
+      "gallery": [
+        "/aker_fassi_white.png",
+        "/aker_fassi_powder_yellow.png",
+        "/aker-fassi_plate.png"
+      ],
+      "content": "100 gr",
+      "usage": "Përziejeni me pak ujë ose vaj argani dhe aplikojeni në buzë ose faqe.",
+      "serviceIds": [
+        "svc-powders"
+      ]
+    },
+    {
+      "id": "prd-tbrima-mask",
+      "name": "Tbrima Mask 200gr",
+      "description": "Ideale per: Pore te bllokuara, teksture te ashper,  deep cleansing routine.",
+      "fullDescription": "Një përzierje tradicionale marokene me bazë bimore dhe argjile, e përdorur si maskë ose skrab detoksifikues.",
+      "price": 1800,
+      "image": "/tbrima-mask-white.png",
+      "gallery": [
+        "/tbrima-mask-white.png",
+        "/tbrima-mask-hand.png",
+        "/tbira_mask_yellow.png"
+      ],
+      "content": "200 gr",
+      "usage": "Përziejeni me ujë ose kos dhe aplikojeni si maskë për 10–15 minuta.",
+      "serviceIds": [
+        "svc-masks"
+      ]
+    },
+    {
+      "id": "prd-aker-fassi-mask",
+      "name": "Aker Fassi Mask 200gr",
+      "description": "Ideale per: Lekure pa jete, rutina glow skiccare",
+      "fullDescription": "Ndihmon në rigjenerimin e lëkurës. Jep një pamje të freskët dhe natyrale. Ushqen lëkurën me antioksidantë",
+      "price": 1600,
+      "image": "/aker_fassi_mask_yellow.png",
+      "gallery": [
+        "/aker_fassi_mask_yellow.png",
+        "/aker-fassi-mask-white.png",
+        "/aker-fassi-mask-yellow.png"
+      ],
+      "content": "200 gr",
+      "usage": "Aplikojeni në fytyrë për 10–15 minuta dhe shpëlajeni me ujë të vakët.",
+      "serviceIds": [
+        "svc-masks"
+      ]
+    },
+    {
+      "id": "prd-nila-scrub",
+      "name": "Nila Scrub",
+      "description": "Purifying Moroccan black soap for soft, clean skin.",
+      "price": 24.0,
+      "image": "/nila_scrub_white.png",
+      "gallery": [
+        "/nila_scrub_white.png",
+        "/nila_scrub_yellow.png",
+        "/nila_scrub_white.png"
+      ],
+      "content": "250 gr",
+      "usage": "Apply on damp skin, leave briefly, then rinse and exfoliate.",
+      "serviceIds": [
+        "svc-soaps",
+        "svc-scrubs"
+      ]
+    },
+    {
+      "id": "prd-black-soap",
+      "name": "Black Soap 200gr",
+      "description": "Ideale per: Body detox, deep cleansing, self care routine",
+      "fullDescription": "* Pastron thellësisht poret. Ndihmon në largimin e papastërtive. Zbut dhe detoksifikon lëkurën. Përgatit lëkurën për eksfolim.",
+      "price": 1600,
+      "image": "/black_soap_open.png",
+      "gallery": [
+        "/black_soap_open.png",
+        "/black-soap-with-bg.png",
+        "/black_soap_no_bg.png"
+      ],
+      "content": "200 gr",
+      "usage": "Përdoreni gjatë dushit në lëkurë të lagur dhe vazhdoni me dorezën Kessa për eksfolim maksimal.",
+      "serviceIds": [
+        "svc-soaps"
+      ]
+    },
+    {
+      "id": "prd-rose-water",
+      "name": "Rose Water 100ml",
+      "description": "Ideale per: Lekure sensitive, hidration mist, daily scincare routine",
+      "fullDescription": "Freskon dhe hidraton lëkurën. Qetëson irritimet. Ndihmon në balancimin e lëkurës. Përgatit lëkurën për trajtime të tjera.",
+      "price": 900,
+      "image": "/rose_water_yellow.png",
+      "gallery": [
+        "/rose_water_yellow.png",
+        "/rose_water_white.png",
+        "/rose_water_bottle.png"
+      ],
+      "content": "100 ml",
+      "usage": "Përdoreni si tonik pas pastrimit ose si spërkatës freskues gjatë ditës.",
+      "serviceIds": [
+        "svc-accessories"
+      ]
+    },
+    {
+      "id": "prd-kessa-glove",
+      "name": "Kessa Glove",
+      "description": "Ideale per: Body exfoliation, smooth skin, hammam routine",
+      "fullDescription": "Përfitimet: Heq qelizat e vdekura.Ndihmon në stimulimin e qarkullimit. Lë lëkurën të lëmuar dhe të pastër. Përmirëson efektin e trajtimeve të tjera.",
+      "price": 900,
+      "image": "/gloves_no_bg.png",
+      "gallery": [
+        "/gloves_no_bg.png",
+        "/gloves-three.png",
+        "/gloves_one.png"
+      ],
+      "content": "1 piece",
+      "usage": "Përdoreni mbi lëkurë të lagur pas sapunit të zi me lëvizje të forta dhe të kontrolluara.",
+      "serviceIds": [
+        "svc-accessories"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "svc-oils",
+      "name": "Oils",
+      "description": "A blend of natural oils to nourish your skin and hair.",
+      "image": "/double_argan_oil_no_bg.png",
+      "productIds": [
+        "prd-argan-elixir-15",
+        "prd-argan-elixir-30",
+        "prd-argan-elixir-50",
+        "prd-prickly-pear-seed-oil"
+      ]
+    },
+    {
+      "id": "svc-powders",
+      "name": "Powders",
+      "description": "A variety of natural powders for your skincare routine.",
+      "image": "/nila_powder_no_bg.png",
+      "productIds": [
+        "prd-nila-powder",
+        "prd-aker-fassi-powder"
+      ]
+    },
+    {
+      "id": "svc-scrubs",
+      "name": "Scrubs",
+      "description": "Exfoliate your skin gently.",
+      "image": "/nila_scrub_no_bg.png",
+      "productIds": [
+        "prd-nila-scrub"
+      ]
+    },
+    {
+      "id": "svc-masks",
+      "name": "Masks",
+      "description": "Natural masks for glowing, healthy skin.",
+      "image": "/aker_fassi_mask_no_bg.png",
+      "productIds": [
+        "prd-tbrima-mask",
+        "prd-aker-fassi-mask",
+        "prd-nila-mask"
+      ]
+    },
+    {
+      "id": "svc-soaps",
+      "name": "Soaps",
+      "description": "Pure soaps for soft, healthy skin.",
+      "image": "/black_soap_no_bg.png",
+      "productIds": [
+        "prd-black-soap"
+      ]
+    },
+    {
+      "id": "svc-accessories",
+      "name": "Accessories",
+      "description": "Essential accessories for deeper skin cleansing.",
+      "image": "/gloves_no_bg.png",
+      "productIds": [
+        "prd-kessa-glove",
+        "prd-rose-water"
+      ]
+    }
+  ],
+  "homeFeaturedProductIds": [
+    "prd-aker-fassi-powder",
+    "prd-tbrima-mask",
+    "prd-aker-fassi-mask",
+    "prd-nila-mask"
+  ]
+}

@@ -4,11 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Camera, ShoppingCart, X } from "lucide-react";
-import mainLogo from "../../../assets/public/logo.svg";
-import whiteMainLogo from "../../../assets/public/white_main_logo.svg";
+import { useCart } from "@/contexts/CartContext";
 
 const NAV_ITEMS = [
     { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
     { href: "/productes", label: "Productes" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
@@ -19,6 +19,7 @@ export default function Topbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const navRef = useRef<HTMLElement | null>(null);
     const pathname = usePathname();
+    const { totalItems } = useCart();
     const isHome = pathname === "/";
     const isTransparent = isHome && !isScrolled && !isOpen;
 
@@ -99,7 +100,7 @@ export default function Topbar() {
                 <div className="flex items-center gap-0 min-[640px]:gap-4">
                     <Image
                         className="topbar-logo"
-                        src={whiteMainLogo}
+                        src={isTransparent ? "/white_main_logo.svg" : "/black_logo.png"}
                         alt="Orivea Logo"
                         width={90}
                         height={90}
@@ -117,11 +118,16 @@ export default function Topbar() {
                             <Camera className="h-5 w-5" aria-hidden="true" />
                         </a>
                         <Link
-                            href="/contact"
-                            aria-label="Shop"
-                            className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} transition-colors`}
+                            href="/shporta"
+                            aria-label="Shporta"
+                            className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} relative transition-colors`}
                         >
                             <ShoppingCart className="h-5 w-5" aria-hidden="true" />
+                            {totalItems > 0 && (
+                                <span className="absolute -right-2 -top-2 inline-flex min-w-4 items-center justify-center rounded-full bg-[#8e6f50] px-1 text-[9px] text-white">
+                                    {totalItems}
+                                </span>
+                            )}
                         </Link>
                 </div>
 
@@ -148,11 +154,16 @@ export default function Topbar() {
                         <Camera className="h-5 w-5" aria-hidden="true" />
                     </a>
                     <Link
-                        href="/contact"
-                        aria-label="Shop"
-                        className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} transition-colors`}
+                        href="/shporta"
+                        aria-label="Shporta"
+                        className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} relative transition-colors`}
                     >
                         <ShoppingCart className="h-5 w-5" aria-hidden="true" />
+                        {totalItems > 0 && (
+                            <span className="absolute -right-2 -top-2 inline-flex min-w-4 items-center justify-center rounded-full bg-[#8e6f50] px-1 text-[9px] text-white">
+                                {totalItems}
+                            </span>
+                        )}
                     </Link>
                 </div>
             </div>

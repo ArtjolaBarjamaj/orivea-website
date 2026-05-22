@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-[#ECE1D6] text-[#2f251d]">
@@ -16,12 +18,12 @@ export default function Footer() {
               placeholder="Your email address"
               className="w-full border-b border-[#d4c8bb] bg-transparent px-1 py-3 text-[13px] text-[#3b3129] placeholder:text-[#aa9b8b] outline-none"
             />
-            <button
-              type="button"
-              className="mt-3 w-full bg-[#0f1218] px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#1a2230]"
+            <Link
+              href="/shporta"
+              className="mt-3 block w-full bg-[#0f1218] px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#1a2230]"
             >
               Go To Shop
-            </button>
+            </Link>
             <p className="mt-3 text-center text-[9px] uppercase tracking-[0.12em] text-[#9c8d7d]">
               By subscribing, you agree to our privacy policy
             </p>
@@ -47,13 +49,11 @@ export default function Footer() {
             <div>
               <h5 className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8b7765]">Connect</h5>
               <a href="#" className="block text-[#4f4439] hover:text-[#2f251d]">WhatsApp</a>
-              <a href="#" className="block text-[#4f4439] hover:text-[#2f251d]">Sustainability</a>
               <a href="#" className="block text-[#4f4439] hover:text-[#2f251d]">Instagram</a>
             </div>
             <div>
               <h5 className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8b7765]">Locations</h5>
-              <p className="text-[#4f4439]">Casablanca, Morocco</p>
-              <p className="text-[#4f4439]">Paris, France</p>
+              <p className="text-[#4f4439]">Albania, Tirane</p>
             </div>
           </div>
 

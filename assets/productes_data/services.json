@@ -3,7 +3,7 @@
         {
             "id": 1,
             "name": "Oils",
-            "description": "A blend of natural oils to nourish your skin.",
+            "description": "A blend of natural oils to nourish your skin and hair.",
             "image": "./oil.png",
             "productes": [
                 {
@@ -31,7 +31,7 @@
         {
             "id": 3,
             "name": "Masks",
-            "description": "A variety of natural masks for your skincare routine.",
+            "description": "Natural masks for glowing, healthy skin.",
             "image": "./masks_service.png",
             "productes": [
                 {
@@ -52,8 +52,14 @@
         {
             "id": 5,
             "name": "Soaps",
-            "description": "Soothe and refresh your skin.",
-            "image": "/soap.jpg"
+            "description": "Pure soaps for soft, healthy skin.",
+            "image": "/black_soap_no_bg.png"
+        },
+        {
+            "id": 6,
+            "name": "Accessories",
+            "description": "Essential accessories for deeper skin cleansing.",
+            "image": "/gloves_no_bg.png"
         }
     ]
 }

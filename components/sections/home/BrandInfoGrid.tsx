@@ -2,7 +2,6 @@
 
 
 import Image from "next/image";
-import brandImage from "../../../assets/public/individual.png";
 import useRevealOnScroll from "@/hooks/useRevealOnScroll";
 
 export default function BrandInfoGrid() {
@@ -13,7 +12,7 @@ export default function BrandInfoGrid() {
 				{/* Image on top */}
 				<div className="anim-fade-up anim-hover-lift w-full aspect-square bg-[#fef2e7] rounded mb-5 overflow-hidden flex items-center justify-center" style={{ minHeight: 180, minWidth: 180 }}>
 					<Image
-						src={brandImage}
+						src="/orivea_description.png"
 						alt="Orivea Founder"
 						width={260}
 						height={260}
@@ -25,8 +24,7 @@ export default function BrandInfoGrid() {
 				<p className="anim-fade-up text-[10px] uppercase tracking-[0.18em] text-[#b49c7a] mb-2">Heritage</p>
 				<h3 className="anim-fade-up anim-delay-1 font-serif italic text-[1.35rem] sm:text-2xl text-[#2f251d] mb-3 leading-tight">The Soul of Orivea</h3>
 				<p className="anim-fade-up anim-delay-2 text-[#7c6c5c] text-[13px] leading-[1.7] mb-4 text-center">
-					Orivea është një brand i dedikuar për kujdesin natyral të lëkurës, i frymëzuar nga natyra dhe traditat më të mira të përkujdesjes. Produktet tona janë të formuluara me përbërës organikë, pa parabene dhe të pa testuara në kafshë, për një rutinë të pastër, të sigurt dhe të qëndrueshme. Zbulo bukurinë natyrale me Orivea.
-				</p>
+Orivea is a brand dedicated to natural skincare, inspired by nature and the best traditions of self-care. Our products are formulated with organic ingredients, free from parabens, and cruelty-free, ensuring a clean, safe, and sustainable routine. Discover natural beauty with Orivea.				</p>
 				<p className="anim-fade-up anim-delay-2 text-[11px] text-[#7c6c5c] italic border-l-2 border-[#b49c7a] pl-3 mb-5 max-w-xs mx-auto">
 					"Skincare is not just a routine; it is a sacred pause in a loud world."
 				</p>

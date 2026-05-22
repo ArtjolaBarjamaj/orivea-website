@@ -1,39 +1,17 @@
 import React from "react";
 import Image from "next/image";
-import FassiPowder from "../../../assets/public/nila_fassi_powder.png";
-import TbrimaMask from "../../../assets/public/tbira_mask.png";
-import AkerFassiMask from "../../../assets/public/aker_fasi_mask.png";
-import NilaMask from "../../../assets/public/nila_mask.png";
+import Link from "next/link";
 import useRevealOnScroll from "@/hooks/useRevealOnScroll";
+import { getFeaturedHomeProducts, resolveCatalogImage } from "@/lib/catalog";
 
-const bestSellers = [
-  {
-    title: "Liquid Gold Argan",
-    price: "$72.00",
-    image: FassiPowder,
-    rating: 5,
-    badge: "NEW",
-  },
-  {
-    title: "Rhassoul Clay Mask",
-    price: "$58.00",
-    image: TbrimaMask,
-    rating: 5,
-  },
-  {
-    title: "Damask Rose Mist",
-    price: "$42.00",
-    image: AkerFassiMask,
-    rating: 5,
-    badge: "POPULAR",
-  },
-  {
-    title: "Nilotica Shea Balm",
-    price: "$35.00",
-    image: NilaMask,
-    rating: 5,
-  },
-];
+const bestSellers = getFeaturedHomeProducts().map((product, index) => ({
+  id: product.id,
+  title: product.name,
+  price: `Lek ${Math.round(product.price).toLocaleString()}`,
+  image: resolveCatalogImage(product.image),
+  rating: 5,
+  badge: index === 0 ? "NEW" : index === 2 ? "POPULAR" : undefined,
+}));
 
 const BestSellersGrid = () => {
   const { ref, isVisible } = useRevealOnScroll<HTMLElement>(0.2);
@@ -52,7 +30,7 @@ const BestSellersGrid = () => {
             className={`anim-fade-up flex flex-col items-start p-3 ${idx === 0 ? "anim-delay-1" : idx === 1 ? "anim-delay-2" : "anim-delay-3"}`}
           >
             {/* Image with badge and flat bg */}
-            <div className="anim-hover-lift relative w-[100%] h-[110px] bg-[#e5e1db] mb-2 flex items-center justify-center">
+            <Link href={`/productes/${product.id}`} className="anim-hover-lift relative w-[100%] h-[110px] bg-[#e5e1db] mb-2 flex items-center justify-center">
               {product.badge && (
                 <span className="absolute left-2 top-2 bg-[#222] text-[9px] text-white px-2 py-[2px] font-semibold uppercase tracking-wider" style={{borderRadius:0}}>
                   {product.badge}
@@ -66,12 +44,12 @@ const BestSellersGrid = () => {
                 className="object-contain w-[90px] h-[80px]"
                 priority
               />
-            </div>
+            </Link>
             {/* Info */}
-            <h3 className="text-[13px] font-serif text-[#2f251d] font-semibold leading-tight mb-1 mt-1">{product.title}</h3>
+            <Link href={`/productes/${product.id}`} className="text-[13px] font-serif text-[#2f251d] font-semibold leading-tight mb-1 mt-1 hover:text-[#5f432c]">{product.title}</Link>
             <div className="text-[12px] text-[#7c6c5c] font-medium mb-1">{product.price}</div>
             <div className="flex items-center gap-[2px] mb-1">
-              {Array.from({ length: product.rating }).map((_, i) => (
+              {Array.from({ length: product?.rating ?? 0 }).map((_, i) => (
                 <span key={i} className="text-[#b49c7a] text-xs">★</span>
               ))}
             </div>

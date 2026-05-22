@@ -2,7 +2,8 @@
 
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { resolveCatalogImage } from "@/lib/catalog";
+import { getLocalizedProductDescription, getLocalizedProductName, getLocalizedProductUsage, resolveCatalogImage } from "@/lib/catalog";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type ProductItem = {
     id: string;
@@ -38,9 +39,13 @@ export default function ProductByIdView({
     relatedProducts,
     resolveImage,
 }: ProductByIdViewProps) {
+    const { lang } = useLanguage();
+    const isSq = lang === "sq";
     const gallery = product.gallery?.length ? product.gallery : [product.image, product.image, product.image];
 
-    const ritualSteps = (product.usage || "Warm a small amount between palms. Apply gently on clean skin. Let it absorb naturally.")
+    const ritualSteps = (getLocalizedProductUsage(product, lang) || (isSq
+        ? "Ngroh një sasi të vogël në pëllëmbë. Aplikoje butësisht në lëkurë të pastër. Lëre të përthithet natyrshëm."
+        : "Warm a small amount between palms. Apply gently on clean skin. Let it absorb naturally."))
         .split(".")
         .map((step) => step.trim())
         .filter(Boolean)
@@ -58,9 +63,9 @@ export default function ProductByIdView({
                         href="/productes"
                         className="text-[10px] uppercase tracking-[0.14em] text-[#5f5a53] underline underline-offset-4 hover:text-[#2d2a26]"
                     >
-                        Back to productes
+                        {isSq ? "Kthehu te produktet" : "Back to products"}
                     </Link>
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-[#7e5e42]">Items in shport: {cartCount}</p>
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-[#7e5e42]">{isSq ? "Produkte në shportë" : "Items in cart"}: {cartCount}</p>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-[1.05fr_1fr] md:gap-10">
@@ -68,7 +73,7 @@ export default function ProductByIdView({
                         <div className="relative mb-2 aspect-[4/5] w-full overflow-hidden bg-[#ddd6ce]">
                             <Image
                                 src={imageSrc}
-                                alt={product.name}
+                                alt={getLocalizedProductName(product, lang)}
                                 fill
                                 sizes="(max-width: 768px) 94vw, 48vw"
                                 className="object-cover"
@@ -79,7 +84,7 @@ export default function ProductByIdView({
                                 <div className="relative mx-auto my-[10%] h-[80%] w-[80%]">
                                     <Image
                                         src={resolveCatalogImage(gallery[1] ?? gallery[0])}
-                                        alt={`${product.name} preview 1`}
+                                        alt={`${getLocalizedProductName(product, lang)} preview 1`}
                                         fill
                                         sizes="(max-width: 768px) 46vw, 20vw"
                                         className="object-cover"
@@ -90,7 +95,7 @@ export default function ProductByIdView({
                                 <div className="relative mx-auto my-[10%] h-[80%] w-[80%]">
                                     <Image
                                         src={resolveCatalogImage(gallery[2] ?? gallery[0])}
-                                        alt={`${product.name} preview 2`}
+                                        alt={`${getLocalizedProductName(product, lang)} preview 2`}
                                         fill
                                         sizes="(max-width: 768px) 46vw, 20vw"
                                         className="object-cover"
@@ -101,26 +106,26 @@ export default function ProductByIdView({
                     </div>
 
                     <div className="max-w-[430px] px-0 py-1 md:py-2">
-                        <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a8178]">Nourishing Treatment</p>
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a8178]">{isSq ? "Trajtim Ushqyes" : "Nourishing Treatment"}</p>
                         <h1 className="mt-1 font-serif text-[2.35rem] leading-[1.02] text-[#2a241e] md:text-[2.8rem]">
-                            {product.name}
+                            {getLocalizedProductName(product, lang)}
                         </h1>
                         <p className="mt-2 font-serif text-[2rem] leading-none text-[#4a4138] md:text-[2.25rem]">{formatPrice(product.price)}</p>
 
                         <div className="mt-6 inline-flex rounded-md bg-[#dfd5cb] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#8a7561]">
-                            Ethically Sourced
+                            {isSq ? "Me Burim Etik" : "Ethically Sourced"}
                         </div>
 
                         <div className="mt-6 border-t border-[#dfd8d0]" />
 
                         <div className="mt-6">
-                            <p className="text-[11px] uppercase tracking-[0.14em] text-[#403a35]">Description</p>
-                            {product.description && <p className="mt-3 text-[13px] leading-7 text-[#66615b] md:text-[14px]">{product.description}</p>}
+                            <p className="text-[11px] uppercase tracking-[0.14em] text-[#403a35]">{isSq ? "Përshkrimi" : "Description"}</p>
+                            {product.description && <p className="mt-3 text-[13px] leading-7 text-[#66615b] md:text-[14px]">{getLocalizedProductDescription(product, lang)}</p>}
                             {product.fullDescription && <p className="mt-3 text-[13px] leading-7 text-[#66615b] md:text-[14px]">{product.fullDescription}</p>}
                         </div>
 
                         <div className="mt-8">
-                            <p className="text-[11px] uppercase tracking-[0.14em] text-[#403a35]">Usage</p>
+                            <p className="text-[11px] uppercase tracking-[0.14em] text-[#403a35]">{isSq ? "Përdorimi" : "Usage"}</p>
                             <ol className="mt-3 space-y-3.5">
                                 {ritualSteps.map((step, index) => (
                                     <li key={index} className="grid grid-cols-[24px_1fr] items-start gap-2 text-[13px] leading-6 text-[#66615b] md:text-[14px]">
@@ -136,13 +141,13 @@ export default function ProductByIdView({
                             onClick={handleAddToCart}
                             className="mt-8 inline-flex w-full items-center justify-center bg-[#121416] px-5 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#2a2e32]"
                         >
-                            Add to bag
+                            {isSq ? "Shto në shportë" : "Add to bag"}
                         </button>
                     </div>
                 </div>
 
                 <div className="mt-9 md:mt-12">
-                    <h2 className="font-serif text-xl text-[#2f251d] md:text-2xl">You may also like</h2>
+                    <h2 className="font-serif text-xl text-[#2f251d] md:text-2xl">{isSq ? "Mund të pëlqesh edhe" : "You may also like"}</h2>
                     <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
                         {relatedProducts.map((related) => (
                             <article key={related.id} className="bg-transparent">
@@ -150,14 +155,14 @@ export default function ProductByIdView({
                                     <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#ddd6ce]">
                                         <Image
                                             src={resolveImage(related)}
-                                            alt={related.name}
+                                            alt={getLocalizedProductName(related, lang)}
                                             fill
                                             sizes="(max-width: 768px) 45vw, 20vw"
                                             className="object-cover"
                                         />
                                     </div>
                                 </Link>
-                                <h3 className="mt-2 font-serif text-sm leading-tight text-[#2f251d] md:text-base">{related.name}</h3>
+                                <h3 className="mt-2 font-serif text-sm leading-tight text-[#2f251d] md:text-base">{getLocalizedProductName(related, lang)}</h3>
                                 <p className="mt-1 text-xs text-[#5e5a55]">{formatPrice(related.price)}</p>
                             </article>
                         ))}
@@ -169,10 +174,10 @@ export default function ProductByIdView({
                         href="/productes"
                         className="text-[10px] uppercase tracking-[0.14em] text-[#5f5a53] underline underline-offset-4 hover:text-[#2d2a26]"
                     >
-                        View all products
+                        {isSq ? "Shiko të gjitha produktet" : "View all products"}
                     </Link>
                     <span className="text-[10px] uppercase tracking-[0.14em] text-[#93877b]">|</span>
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-[#93877b]">More info can be added later</span>
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-[#93877b]">{isSq ? "Më shumë informacion mund të shtohet më vonë" : "More info can be added later"}</span>
                 </div>
             </div>
         </section>

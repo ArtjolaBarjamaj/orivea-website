@@ -5,13 +5,15 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Camera, ShoppingCart, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { i18n, t } from "@/lib/i18n";
 
 const NAV_ITEMS = [
-    { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/productes", label: "Productes" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: i18n.nav.home },
+    { href: "/services", label: i18n.nav.services },
+    { href: "/productes", label: i18n.nav.products },
+    { href: "/about", label: i18n.nav.about },
+    { href: "/contact", label: i18n.nav.contact },
 ];
 
 export default function Topbar() {
@@ -20,8 +22,10 @@ export default function Topbar() {
     const navRef = useRef<HTMLElement | null>(null);
     const pathname = usePathname();
     const { totalItems } = useCart();
+    const { lang, setLang } = useLanguage();
     const isHome = pathname === "/";
     const isTransparent = isHome && !isScrolled && !isOpen;
+    const isSq = lang === "sq";
 
     const isActivePath = (href: string) => {
         if (href === "/") return pathname === "/";
@@ -108,6 +112,14 @@ export default function Topbar() {
                     <span className={`topbar-title text-3xl font-light italic tracking-widest font-serif ${isTransparent ? "text-white drop-shadow-sm" : "text-[#2f251d]"}`}>Orivea Glow</span>
                 </div>
                 <div className="flex items-center gap-4 sm:hidden">
+                        <button
+                            type="button"
+                            onClick={() => setLang(isSq ? "en" : "sq")}
+                            className={`${isTransparent ? "text-white/90" : "text-[#4f4439]"} text-[11px] uppercase tracking-[0.14em]`}
+                            aria-label={t(lang, i18n.nav.changeLanguage)}
+                        >
+                            {isSq ? "EN" : "SQ"}
+                        </button>
                         <a
                             href="https://instagram.com"
                             target="_blank"
@@ -119,7 +131,7 @@ export default function Topbar() {
                         </a>
                         <Link
                             href="/shporta"
-                            aria-label="Shporta"
+                            aria-label={t(lang, i18n.nav.cartAria)}
                             className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} relative transition-colors`}
                         >
                             <ShoppingCart className="h-5 w-5" aria-hidden="true" />
@@ -138,12 +150,20 @@ export default function Topbar() {
                             href={item.href}
                             className={navClassName(item.href)}
                         >
-                            {item.label}
+                            {t(lang, item.label)}
                         </Link>
                     ))}
                 </div>
 
                 <div className="topbar-links topbar-links-desktop px-8 gap-5 items-center self-center">
+                    <button
+                        type="button"
+                        onClick={() => setLang(isSq ? "en" : "sq")}
+                        className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} text-[11px] uppercase tracking-[0.14em] transition-colors`}
+                        aria-label={t(lang, i18n.nav.changeLanguage)}
+                    >
+                        {isSq ? "EN" : "SQ"}
+                    </button>
                     <a
                         href="https://instagram.com"
                         target="_blank"
@@ -155,7 +175,7 @@ export default function Topbar() {
                     </a>
                     <Link
                         href="/shporta"
-                        aria-label="Shporta"
+                        aria-label={t(lang, i18n.nav.cartAria)}
                         className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} relative transition-colors`}
                     >
                         <ShoppingCart className="h-5 w-5" aria-hidden="true" />
@@ -178,7 +198,7 @@ export default function Topbar() {
                                 href={item.href}
                                 className={navClassName(item.href, true)}
                             >
-                                {item.label}
+                                {t(lang, item.label)}
                             </Link>
                         ))}
                     </div>

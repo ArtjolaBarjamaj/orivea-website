@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import useRevealOnScroll from "@/hooks/useRevealOnScroll";
-import { getFeaturedHomeProducts, resolveCatalogImage } from "@/lib/catalog";
+import { getFeaturedHomeProducts, resolveCatalogImage, getLocalizedProductNameById } from "@/lib/catalog";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const bestSellers = getFeaturedHomeProducts().map((product, index) => ({
   id: product.id,
@@ -15,13 +16,15 @@ const bestSellers = getFeaturedHomeProducts().map((product, index) => ({
 
 const BestSellersGrid = () => {
   const { ref, isVisible } = useRevealOnScroll<HTMLElement>(0.2);
+  const { lang } = useLanguage();
+  const isSq = lang === "sq";
 
   return (
     <section ref={ref} className={`reveal-section bg-[#f8f4f1] px-4 py-10 w-full mx-auto ${isVisible ? "is-visible" : ""}`}>
       <div className="mb-4">
-        <p className="anim-fade-up text-[10px] uppercase tracking-[0.18em] text-[#b49c7a] mb-1">Best Sellers</p>
-        <h2 className="anim-fade-up anim-delay-1 font-serif italic text-[1.35rem] sm:text-2xl text-[#2f251d] mb-1 leading-tight">The Essentials</h2>
-        <a href="#" className="anim-fade-up anim-delay-2 text-[11px] uppercase tracking-[0.14em] text-[#1a3a5a] underline underline-offset-4 hover:text-[#5f432c] font-medium">Shop All Products</a>
+        <p className="anim-fade-up text-[10px] uppercase tracking-[0.18em] text-[#b49c7a] mb-1">{isSq ? "Më Të Shiturat" : "Best Sellers"}</p>
+        <h2 className="anim-fade-up anim-delay-1 font-serif italic text-[1.35rem] sm:text-2xl text-[#2f251d] mb-1 leading-tight">{isSq ? "Thelbësoret" : "The Essentials"}</h2>
+        <Link href="/productes" className="anim-fade-up anim-delay-2 text-[11px] uppercase tracking-[0.14em] text-[#1a3a5a] underline underline-offset-4 hover:text-[#5f432c] font-medium">{isSq ? "Shiko Të Gjitha Produktet" : "Shop All Products"}</Link>
       </div>
       <div className="grid grid-cols-2 gap-x-6 gap-y-8 mt-6">
         {bestSellers.map((product, idx) => (
@@ -46,7 +49,7 @@ const BestSellersGrid = () => {
               />
             </Link>
             {/* Info */}
-            <Link href={`/productes/${product.id}`} className="text-[13px] font-serif text-[#2f251d] font-semibold leading-tight mb-1 mt-1 hover:text-[#5f432c]">{product.title}</Link>
+            <Link href={`/productes/${product.id}`} className="text-[13px] font-serif text-[#2f251d] font-semibold leading-tight mb-1 mt-1 hover:text-[#5f432c]">{getLocalizedProductNameById(product.id, product.title, lang)}</Link>
             <div className="text-[12px] text-[#7c6c5c] font-medium mb-1">{product.price}</div>
             <div className="flex items-center gap-[2px] mb-1">
               {Array.from({ length: product?.rating ?? 0 }).map((_, i) => (
@@ -57,12 +60,12 @@ const BestSellersGrid = () => {
         ))}
       </div>
       <div className="mt-8 flex justify-center">
-        <button
-          type="button"
+        <Link
+          href="/productes"
           className="anim-fade-up anim-delay-3 border border-[#b49c7a] px-5 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-[#5f432c] transition-colors hover:bg-[#ede6de]"
         >
-          View All Productes
-        </button>
+          {isSq ? "Shiko Të Gjitha Produktet" : "View All Productes"}
+        </Link>
       </div>
     </section>
   );

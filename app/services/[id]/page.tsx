@@ -8,9 +8,14 @@ import { useCart } from "@/contexts/CartContext";
 import {
   catalogServices,
   getProductsByServiceId,
+  getLocalizedProductDescription,
+  getLocalizedProductName,
+  getLocalizedServiceDescription,
+  getLocalizedServiceName,
   resolveCatalogImage,
   type CatalogProduct,
 } from "@/lib/catalog";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 function buildProductHref(product: CatalogProduct) {
   return `/productes/${product.id}`;
@@ -23,6 +28,8 @@ function formatPrice(price: number) {
 export default function ServiceProductsPage() {
   const params = useParams<{ id?: string | string[] }>();
   const { totalItems } = useCart();
+  const { lang } = useLanguage();
+  const isSq = lang === "sq";
   const rawId = Array.isArray(params.id) ? params.id[0] : params.id;
   const serviceId = rawId ?? "";
   const allServices = catalogServices;
@@ -46,31 +53,31 @@ export default function ServiceProductsPage() {
         if (firstProduct) {
           return {
             serviceId: item.id,
-            serviceName: item.name,
+            serviceName: getLocalizedServiceName(item, lang),
             product: firstProduct,
           };
         }
 
         return {
           serviceId: item.id,
-          serviceName: item.name,
+          serviceName: getLocalizedServiceName(item, lang),
           product: {
             id: `placeholder-${item.id}`,
-            name: `${item.name} Essentials`,
-            description: item.description,
+            name: `${getLocalizedServiceName(item, lang)} ${isSq ? "Thelbësore" : "Essentials"}`,
+            description: getLocalizedServiceDescription(item, lang),
             price: 0,
             image: item.image,
             serviceIds: [item.id],
           } as CatalogProduct,
         };
       });
-  }, [allServices, serviceId, serviceProductsMap]);
+  }, [allServices, isSq, lang, serviceId, serviceProductsMap]);
 
   if (!service) {
     return (
       <section className="min-h-screen bg-[#f6f0eb] px-4 py-10">
         <div className="mx-auto max-w-4xl">
-          <h1 className="font-serif text-3xl text-[#2f251d]">Service not found</h1>
+          <h1 className="font-serif text-3xl text-[#2f251d]">{isSq ? "Shërbimi nuk u gjet" : "Service not found"}</h1>
         </div>
       </section>
     );
@@ -80,15 +87,15 @@ export default function ServiceProductsPage() {
     <section className="min-h-screen bg-[#f6f0eb] px-4 py-8 md:px-8 md:py-12">
       <div className="mx-auto w-full max-w-6xl">
         <div className="mb-8 text-center md:mb-10">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-[#8f6f52]">Our Service</p>
-          <h1 className="mt-2 font-serif text-3xl leading-tight text-[#2f251d] md:text-5xl">{service.name}</h1>
-          <p className="mx-auto mt-3 max-w-[60ch] text-sm text-[#6f655b] md:text-base">{service.description}</p>
-          <p className="mt-2 text-xs uppercase tracking-[0.12em] text-[#7e5e42]">Items in shport: {totalItems}</p>
+          <p className="text-[11px] uppercase tracking-[0.16em] text-[#8f6f52]">{isSq ? "Shërbimi Ynë" : "Our Service"}</p>
+          <h1 className="mt-2 font-serif text-3xl leading-tight text-[#2f251d] md:text-5xl">{getLocalizedServiceName(service, lang)}</h1>
+          <p className="mx-auto mt-3 max-w-[60ch] text-sm text-[#6f655b] md:text-base">{getLocalizedServiceDescription(service, lang)}</p>
+          <p className="mt-2 text-xs uppercase tracking-[0.12em] text-[#7e5e42]">{isSq ? "Produkte në shportë" : "Items in cart"}: {totalItems}</p>
         </div>
 
         {products.length === 0 ? (
           <div className="rounded-sm bg-white/70 p-6 text-center text-[#6f655b]">
-            No products added for this service yet.
+            {isSq ? "Nuk ka ende produkte për këtë shërbim." : "No products added for this service yet."}
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
@@ -99,7 +106,7 @@ export default function ServiceProductsPage() {
                     <div className="relative h-full w-full">
                       <Image
                         src={resolveCatalogImage(product.image)}
-                        alt={product.name}
+                        alt={getLocalizedProductName(product, lang)}
                         fill
                         sizes="(max-width: 768px) 45vw, 23vw"
                         className="object-contain"
@@ -108,11 +115,11 @@ export default function ServiceProductsPage() {
                   </div>
                 </Link>
                 <Link href={buildProductHref(product)} className="font-serif text-[1.05rem] leading-tight text-[#2f251d] hover:text-[#5f432c] md:text-[1.2rem]">
-                  {product.name}
+                  {getLocalizedProductName(product, lang)}
                 </Link>
                 <p className="mt-1 text-sm text-[#6f655b]">{formatPrice(product.price)}</p>
                 <p className="mt-2 min-h-[3.25rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
-                  {product.description}
+                  {getLocalizedProductDescription(product, lang)}
                 </p>
               </article>
             ))}
@@ -121,8 +128,8 @@ export default function ServiceProductsPage() {
 
         <div className="mt-12 md:mt-16">
           <div className="mb-5 text-center md:mb-8">
-            <p className="text-[11px] uppercase tracking-[0.16em] text-[#8f6f52]">Discover More</p>
-            <h2 className="mt-2 font-serif text-2xl text-[#2f251d] md:text-4xl">You may be interested in</h2>
+            <p className="text-[11px] uppercase tracking-[0.16em] text-[#8f6f52]">{isSq ? "Zbulo Më Shumë" : "Discover More"}</p>
+            <h2 className="mt-2 font-serif text-2xl text-[#2f251d] md:text-4xl">{isSq ? "Mund të të interesojë" : "You may be interested in"}</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6">
@@ -133,7 +140,7 @@ export default function ServiceProductsPage() {
                     <div className="relative h-full w-full">
                       <Image
                         src={resolveCatalogImage(entry.product.image)}
-                        alt={entry.product.name}
+                        alt={getLocalizedProductName(entry.product, lang)}
                         fill
                         sizes="(max-width: 768px) 45vw, 18vw"
                         className="object-contain"
@@ -142,20 +149,20 @@ export default function ServiceProductsPage() {
                   </div>
                 </Link>
                 <Link href={buildProductHref(entry.product)} className="font-serif text-[1rem] leading-tight text-[#2f251d] hover:text-[#5f432c] md:text-[1.1rem]">
-                  {entry.product.name}
+                  {getLocalizedProductName(entry.product, lang)}
                 </Link>
                 <p className="mt-1 text-sm text-[#6f655b]">
-                  {entry.product.price > 0 ? formatPrice(entry.product.price) : "Coming soon"}
+                  {entry.product.price > 0 ? formatPrice(entry.product.price) : isSq ? "Së shpejti" : "Coming soon"}
                 </p>
                 <p className="mt-2 min-h-[3rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
-                  {entry.product.description}
+                  {getLocalizedProductDescription(entry.product, lang)}
                 </p>
                 <div className="mt-1 flex items-center gap-3">
                   <Link
                     href={buildProductHref(entry.product)}
                     className="text-[10px] uppercase tracking-[0.12em] text-[#7e5e42] underline underline-offset-4 hover:text-[#5f432c]"
                   >
-                    Shiko produktin
+                    {isSq ? "Shiko produktin" : "View product"}
                   </Link>
                 </div>
               </article>

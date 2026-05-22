@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type CheckoutFormState = {
   firstName: string;
@@ -16,6 +17,8 @@ function formatPrice(price: number) {
 
 export default function ShportaPage() {
   const { items, totalItems, subtotal, updateQuantity, removeItem, clearCart } = useCart();
+  const { lang } = useLanguage();
+  const isSq = lang === "sq";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [formState, setFormState] = useState<CheckoutFormState>({
@@ -38,12 +41,12 @@ export default function ShportaPage() {
     event.preventDefault();
 
     if (items.length === 0) {
-      setStatusMessage("Shporta eshte bosh.");
+      setStatusMessage(isSq ? "Shporta është bosh." : "Your cart is empty.");
       return;
     }
 
     if (!isFormValid) {
-      setStatusMessage("Ju lutem plotesoni te gjitha fushat.");
+      setStatusMessage(isSq ? "Ju lutem plotësoni të gjitha fushat." : "Please fill in all fields.");
       return;
     }
 
@@ -68,15 +71,15 @@ export default function ShportaPage() {
         const payload = (await response.json().catch(() => null)) as
           | { message?: string }
           | null;
-        throw new Error(payload?.message || "Nuk u dergua porosia.");
+        throw new Error(payload?.message || (isSq ? "Nuk u dërgua porosia." : "Order could not be sent."));
       }
 
       clearCart();
       setFormState({ firstName: "", lastName: "", phone: "", address: "" });
-      setStatusMessage("Porosia u dergua me sukses.");
+      setStatusMessage(isSq ? "Porosia u dërgua me sukses." : "Order sent successfully.");
     } catch (error) {
       const message =
-        error instanceof Error ? error.message : "Ndodhi nje gabim gjate porosise.";
+        error instanceof Error ? error.message : isSq ? "Ndodhi një gabim gjatë porosisë." : "An error occurred while placing the order.";
       setStatusMessage(message);
     } finally {
       setIsSubmitting(false);
@@ -87,12 +90,12 @@ export default function ShportaPage() {
     <section className="min-h-screen bg-[#f6f0eb] px-4 py-8 md:px-8 md:py-12">
       <div className="mx-auto grid w-full max-w-6xl gap-8 md:grid-cols-[1.2fr_1fr]">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.16em] text-[#8f6f52]">Shporta juaj</p>
-          <h1 className="mt-2 font-serif text-3xl text-[#2f251d] md:text-5xl">Produktet e ruajtura</h1>
+          <p className="text-[11px] uppercase tracking-[0.16em] text-[#8f6f52]">{isSq ? "Shporta juaj" : "Your cart"}</p>
+          <h1 className="mt-2 font-serif text-3xl text-[#2f251d] md:text-5xl">{isSq ? "Produktet e ruajtura" : "Saved products"}</h1>
 
           {items.length === 0 ? (
             <div className="mt-6 rounded-sm bg-white/80 p-6 text-[#6f655b]">
-              Nuk keni shtuar produkte ne shporte.
+              {isSq ? "Nuk keni shtuar produkte në shportë." : "You have not added products to cart yet."}
             </div>
           ) : (
             <div className="mt-6 space-y-4">
@@ -110,7 +113,7 @@ export default function ShportaPage() {
                       onClick={() => removeItem(item.key)}
                       className="text-[10px] uppercase tracking-[0.12em] text-[#7e5e42] underline underline-offset-4"
                     >
-                      Hiq
+                      {isSq ? "Hiq" : "Remove"}
                     </button>
                   </div>
 
@@ -119,7 +122,7 @@ export default function ShportaPage() {
                       type="button"
                       onClick={() => updateQuantity(item.key, item.quantity - 1)}
                       className="h-8 w-8 border border-[#c8b8a6] text-[#5f432c]"
-                      aria-label="Decrease quantity"
+                      aria-label={isSq ? "Ule sasinë" : "Decrease quantity"}
                     >
                       -
                     </button>
@@ -128,7 +131,7 @@ export default function ShportaPage() {
                       type="button"
                       onClick={() => updateQuantity(item.key, item.quantity + 1)}
                       className="h-8 w-8 border border-[#c8b8a6] text-[#5f432c]"
-                      aria-label="Increase quantity"
+                      aria-label={isSq ? "Rrit sasinë" : "Increase quantity"}
                     >
                       +
                     </button>
@@ -140,18 +143,18 @@ export default function ShportaPage() {
         </div>
 
         <div className="rounded-sm bg-white/80 p-5 md:p-6">
-          <h2 className="font-serif text-2xl text-[#2f251d]">Perfundo porosine</h2>
-          <p className="mt-2 text-sm text-[#6f655b]">Plotesoni te dhenat dhe porosia do te dergohet ne emailin e owner.</p>
+          <h2 className="font-serif text-2xl text-[#2f251d]">{isSq ? "Përfundo porosinë" : "Complete your order"}</h2>
+          <p className="mt-2 text-sm text-[#6f655b]">{isSq ? "Plotësoni të dhënat dhe porosia do të dërgohet në email-in e owner." : "Fill in your details and the order will be sent to the owner email."}</p>
 
           <div className="mt-4 space-y-1 border-y border-[#e2d8cd] py-4 text-sm text-[#5f5145]">
-            <p>Produkte: {totalItems}</p>
-            <p>Totali: {formatPrice(subtotal)}</p>
+            <p>{isSq ? "Produkte" : "Items"}: {totalItems}</p>
+            <p>{isSq ? "Totali" : "Total"}: {formatPrice(subtotal)}</p>
           </div>
 
           <form className="mt-5 space-y-3" onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Emri"
+              placeholder={isSq ? "Emri" : "First name"}
               value={formState.firstName}
               onChange={(event) =>
                 setFormState((prev) => ({ ...prev, firstName: event.target.value }))
@@ -161,7 +164,7 @@ export default function ShportaPage() {
             />
             <input
               type="text"
-              placeholder="Mbiemri"
+              placeholder={isSq ? "Mbiemri" : "Last name"}
               value={formState.lastName}
               onChange={(event) =>
                 setFormState((prev) => ({ ...prev, lastName: event.target.value }))
@@ -171,7 +174,7 @@ export default function ShportaPage() {
             />
             <input
               type="tel"
-              placeholder="Numri i telefonit"
+              placeholder={isSq ? "Numri i telefonit" : "Phone number"}
               value={formState.phone}
               onChange={(event) =>
                 setFormState((prev) => ({ ...prev, phone: event.target.value }))
@@ -180,7 +183,7 @@ export default function ShportaPage() {
               required
             />
             <textarea
-              placeholder="Adresa e porosise"
+              placeholder={isSq ? "Adresa e porosisë" : "Delivery address"}
               value={formState.address}
               onChange={(event) =>
                 setFormState((prev) => ({ ...prev, address: event.target.value }))
@@ -194,7 +197,7 @@ export default function ShportaPage() {
               disabled={isSubmitting || items.length === 0}
               className="w-full bg-[#121416] px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#2a2e32] disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {isSubmitting ? "Duke derguar..." : "Bej porosi"}
+              {isSubmitting ? (isSq ? "Duke dërguar..." : "Sending...") : isSq ? "Bëj porosi" : "Place order"}
             </button>
           </form>
 

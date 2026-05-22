@@ -4,6 +4,8 @@ import "../lib/globals.css";
 import Topbar from "../components/sections/layout/Topbar";
 import Footer from "../components/sections/layout/Footer";
 import AppProviders from "@/components/providers/AppProviders";
+import LanguageHeadSync from "@/components/seo/LanguageHeadSync";
+import { i18n } from "@/lib/i18n";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Orivea Body Care",
-  description: "Kozmetikë dhe produkte për kujdesin e trupit",
+  title: i18n.seo.homeTitle.sq,
+  description: i18n.seo.homeDescription.sq,
 };
 
 export default function RootLayout({
@@ -32,6 +34,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
         <AppProviders>
+          <LanguageHeadSync />
           <Topbar />
 
           <main className="flex-1">

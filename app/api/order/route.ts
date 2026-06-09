@@ -24,7 +24,16 @@ type OrderPayload = {
 };
 
 function formatPrice(value: number) {
-  return `$${value.toFixed(2)}`;
+  return `Lek ${value.toFixed(2)}`;
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 export async function POST(request: Request) {
@@ -113,6 +122,60 @@ export async function POST(request: Request) {
       `Subtotal: ${formatPrice(subtotal)}`,
     ].join("\n");
 
+    const itemsHtml = items
+      .map((item) => {
+        const lineTotal = item.price * item.quantity;
+        return `
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #ece5dd; color: #2f251d; font-size: 14px;">${escapeHtml(item.name)}</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #ece5dd; color: #6f655b; font-size: 14px; text-align: center;">${item.quantity}</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #ece5dd; color: #6f655b; font-size: 14px; text-align: right;">${formatPrice(item.price)}</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #ece5dd; color: #2f251d; font-size: 14px; text-align: right; font-weight: 600;">${formatPrice(lineTotal)}</td>
+          </tr>
+        `;
+      })
+      .join("");
+
+    const html = `
+      <div style="margin:0; padding:24px; background:#f6f0eb; font-family: Georgia, 'Times New Roman', serif; color:#2f251d;">
+        <div style="max-width:680px; margin:0 auto; background:#ffffff; border:1px solid #e8ddd0;">
+          <div style="padding:20px 24px; border-bottom:1px solid #ece5dd; background:#fbf7f3;">
+            <p style="margin:0; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#8f6f52;">Orivea Glow</p>
+            <h2 style="margin:8px 0 0; font-size:30px; font-weight:500; line-height:1.1;">New Order Received</h2>
+            <p style="margin:8px 0 0; color:#6f655b; font-size:14px;">From ${escapeHtml(customer.firstName)} ${escapeHtml(customer.lastName)}</p>
+          </div>
+
+          <div style="padding:20px 24px; border-bottom:1px solid #ece5dd;">
+            <p style="margin:0 0 10px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#8f6f52;">Customer Details</p>
+            <p style="margin:0 0 4px; font-size:14px;"><strong>Phone:</strong> ${escapeHtml(customer.phone)}</p>
+            <p style="margin:0; font-size:14px;"><strong>Address:</strong> ${escapeHtml(customer.address)}</p>
+          </div>
+
+          <div style="padding:20px 24px;">
+            <p style="margin:0 0 12px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#8f6f52;">Order Items</p>
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+              <thead>
+                <tr>
+                  <th style="padding:10px 12px; border-bottom:1px solid #d8cab8; color:#6f655b; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; text-align:left;">Product</th>
+                  <th style="padding:10px 12px; border-bottom:1px solid #d8cab8; color:#6f655b; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; text-align:center;">Qty</th>
+                  <th style="padding:10px 12px; border-bottom:1px solid #d8cab8; color:#6f655b; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; text-align:right;">Unit</th>
+                  <th style="padding:10px 12px; border-bottom:1px solid #d8cab8; color:#6f655b; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${itemsHtml}
+              </tbody>
+            </table>
+
+            <div style="margin-top:16px; padding:14px 16px; background:#fbf7f3; border:1px solid #ece5dd;">
+              <p style="margin:0 0 6px; font-size:14px; color:#6f655b;">Total items: <strong style="color:#2f251d;">${totalItems}</strong></p>
+              <p style="margin:0; font-size:16px; color:#2f251d;">Subtotal: <strong>${formatPrice(subtotal)}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
     await transporter.verify();
 
     await transporter.sendMail({
@@ -120,6 +183,7 @@ export async function POST(request: Request) {
       to,
       subject,
       text,
+      html,
     });
 
     return NextResponse.json({ ok: true });

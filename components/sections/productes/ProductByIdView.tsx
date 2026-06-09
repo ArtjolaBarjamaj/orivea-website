@@ -45,11 +45,11 @@ export default function ProductByIdView({
 }: ProductByIdViewProps) {
     const { lang } = useLanguage();
     const isSq = lang === "sq";
-    const [quantity, setQuantity] = useState(Math.max(1, currentProductQuantity || 1));
+    const [quantity, setQuantity] = useState(currentProductQuantity);
     const gallery = product.gallery?.length ? product.gallery : [product.image, product.image, product.image];
 
     useEffect(() => {
-        setQuantity(Math.max(1, currentProductQuantity || 1));
+        setQuantity(currentProductQuantity);
     }, [currentProductQuantity, product.id]);
 
     const defaultRitualSteps = isSq
@@ -182,7 +182,7 @@ export default function ProductByIdView({
                         <div className="mt-8 inline-flex w-50 items-center border border-[#cfc8c1]">
                             <button
                                 type="button"
-                                onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+                                onClick={() => setQuantity((prev) => Math.max(0, prev - 1))}
                                 className="h-16 w-20 text-3xl leading-none text-[#161616] transition-colors hover:bg-[#f2efeb]"
                                 aria-label={isSq ? "Ule sasinë" : "Decrease quantity"}
                             >

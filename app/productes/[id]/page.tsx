@@ -36,11 +36,12 @@ export default function ProductByIdPage() {
   }, [items, productId]);
 
   function addToCart(item: CatalogProduct, quantity: number) {
-    const safeQuantity = Math.max(1, quantity);
+    const safeQuantity = Math.max(0, quantity);
     const resolvedImage = resolveCatalogImage(item.image);
     const matchingItems = items.filter((cartItem) => cartItem.id === item.id);
 
     if (matchingItems.length === 0) {
+      if (safeQuantity === 0) return;
       addItem({
         id: item.id,
         name: getLocalizedProductName(item, lang),
@@ -51,7 +52,11 @@ export default function ProductByIdPage() {
     }
 
     const [firstMatch, ...duplicates] = matchingItems;
-    updateQuantity(firstMatch.key, safeQuantity);
+    if (safeQuantity === 0) {
+      removeItem(firstMatch.key);
+    } else {
+      updateQuantity(firstMatch.key, safeQuantity);
+    }
 
     // Keep one cart row per product id if duplicates exist from older entries.
     duplicates.forEach((entry) => removeItem(entry.key));

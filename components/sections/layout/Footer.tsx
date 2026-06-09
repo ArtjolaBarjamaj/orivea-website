@@ -20,20 +20,20 @@ export default function Footer() {
           </p>
 
           <div className="mx-auto mt-6 max-w-md">
-            <input
+            {/* <input
               type="email"
               placeholder={t(lang, i18n.footer.emailPlaceholder)}
               className="w-full border-b border-[#d4c8bb] bg-transparent px-1 py-3 text-[13px] text-[#3b3129] placeholder:text-[#aa9b8b] outline-none"
-            />
+            /> */}
             <Link
               href="/shporta"
               className="mt-3 block w-full bg-[#0f1218] px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#1a2230]"
             >
               {t(lang, i18n.footer.goToShop)}
             </Link>
-            <p className="mt-3 text-center text-[9px] uppercase tracking-[0.12em] text-[#9c8d7d]">
+            {/* <p className="mt-3 text-center text-[9px] uppercase tracking-[0.12em] text-[#9c8d7d]">
               {t(lang, i18n.footer.subscribeNote)}
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -54,9 +54,29 @@ export default function Footer() {
               <a href="#" className="block text-[#4f4439] hover:text-[#2f251d]">{t(lang, i18n.footer.shipping)}</a>
             </div>
             <div>
-              <h5 className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8b7765]">{t(lang, i18n.footer.connect)}</h5>
-              <a href="#" className="block text-[#4f4439] hover:text-[#2f251d]">WhatsApp</a>
-              <a href="#" className="block text-[#4f4439] hover:text-[#2f251d]">Instagram</a>
+              <h5 className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8b7765]">
+                {t(lang, i18n.footer.connect)}
+              </h5>
+
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/355693053031"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-[#4f4439] hover:text-[#2f251d]"
+              >
+                WhatsApp
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/orivea_glow"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-[#4f4439] hover:text-[#2f251d]"
+              >
+                Instagram
+              </a>
             </div>
             <div>
               <h5 className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8b7765]">{t(lang, i18n.footer.locations)}</h5>

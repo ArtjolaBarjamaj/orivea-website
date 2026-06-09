@@ -8,6 +8,7 @@ import BrandInfoGrid from "../components/sections/home/BrandInfoGrid";
 import BestSellersGrid from "../components/sections/home/ProductesGrid";
 import { Button } from "../components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Link from "next/link";
 
 export default function Home() {
   const { lang } = useLanguage();
@@ -36,9 +37,12 @@ export default function Home() {
               ? "Sekrete të lashta botanike të rafinuara nga shkenca moderne. Zbulo një ritual që nderon inteligjencën natyrale të lëkurës tënde."
               : "Ancient botanical secrets refined through modern science. Discover a ritual that honors your skin&apos;s natural intelligence."}
           </p>
-          <Button className="h-auto w-full sm:w-auto bg-[#0B1117] text-white text-sm sm:text-base font-semibold uppercase tracking-[0.12em] px-8 py-4 rounded-none shadow-md hover:bg-[#111c27] transition-colors duration-300">
+          <Link
+            href="/services"
+            className="inline-flex h-auto w-full sm:w-auto items-center justify-center bg-[#0B1117] text-white text-sm sm:text-base font-semibold uppercase tracking-[0.12em] px-8 py-4 rounded-none shadow-md hover:bg-[#111c27] transition-colors duration-300"
+          >
             {isSq ? "Shiko Koleksionin" : "Shop The Collection"}
-          </Button>
+          </Link>
         </div>
       </section>
       <ProductGrid />

@@ -36,9 +36,9 @@ export default function BrandInfoGrid() {
 						? '"Kujdesi për lëkurën nuk është thjesht rutinë; është një pauzë e shenjtë në një botë të zhurmshme."'
 						: '"Skincare is not just a routine; it is a sacred pause in a loud world."'}
 				</p>
-				<button className="anim-fade-up anim-delay-3 mt-2 px-5 py-2 border border-[#b49c7a] text-[11px] tracking-[0.12em] uppercase text-[#7c6c5c] bg-transparent rounded hover:bg-[#ede6de] transition">
+				{/* <button className="anim-fade-up anim-delay-3 mt-2 px-5 py-2 border border-[#b49c7a] text-[11px] tracking-[0.12em] uppercase text-[#7c6c5c] bg-transparent rounded hover:bg-[#ede6de] transition">
 					{isSq ? "Historia Jonë e Plotë" : "Our Full Story"}
-				</button>
+				</button> */}
 			</div>
 		</section>
 	);

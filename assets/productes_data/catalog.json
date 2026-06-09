@@ -3,17 +3,18 @@
     {
       "id": "prd-argan-elixir-15",
       "name": "Argan Oil 15ml",
-      "description": "Ideale per: Dry skin, damaged hair, dehydration",
-      "fullDescription": "Vaji i arganit është një vaj 100% natyral, i përftuar me presim të ftohtë nga bërthamat e pemës Argania Spinosa në Marok. I njohur si “ari i lëngshëm”, ai është i pasur me Vitaminë E, acide yndyrore esenciale dhe antioksidantë që ndihmojnë në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+      "description": "Travel size, rich in vitamin E. Ideal for skin and hair daily use.",
+      "fullDescription": "Argan oil is a 100% natural cosmetic oil. Rich in Vitamin E, fatty acids, and antioxidants. This oil is a multifunctional moisturizer that helps nourish and protect the skin, hair, and nails.",
       "price": 900,
-      "image": "/argan_oil_double_white.png",
+      "image": "/argan_oils_no_bg.png",
       "gallery": [
-        "/argan_oil_double_white.png",
+        "/argan_oils_no_bg.png",
         "/argan_oil_30_white.png",
         "/argan_oil_double_yellow.png"
       ],
       "content": "15 ml",
-      "usage": "Fytyra: Aplikoni 2–3 pika në lëkurë të pastër dhe masazhoni lehtë.Flokët: Vendoseni në maja ose përdoreni si trajtim para larjes.Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
+      "benefits": "Nourishes and stimulates skin regeneration. Has anti-aging properties and improves elasticity. Strengthens hair fibers and helps prevent split ends. 100% natural and rich in vitamin E (tocopherols).",
+      "usage": "Face: Apply 2–3 drops and gently massage into the skin in the evening. Hair: Apply to the ends or use as a nourishing mask before washing. Body: Apply after showering on damp skin for maximum hydration.",
       "serviceIds": [
         "svc-oils"
       ]
@@ -21,17 +22,18 @@
     {
       "id": "prd-argan-elixir-30",
       "name": "Argan Oil 30ml",
-      "description": "Ideale per: Dry skin, damaged hair, dehydration",
-      "fullDescription": "Vaji i arganit është një vaj 100% natyral, i përftuar me presim të ftohtë nga bërthamat e pemës Argania Spinosa në Marok. I njohur si “ari i lëngshëm”, ai është i pasur me Vitaminë E, acide yndyrore esenciale dhe antioksidantë që ndihmojnë në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+      "description": "Medium size, rich in vitamin E for daily hydration of skin and hair.",
+      "fullDescription": "Argan oil is a 100% natural cosmetic oil. Rich in Vitamin E, fatty acids, and antioxidants. This oil is a multifunctional moisturizer that helps nourish and protect the skin, hair, and nails.",
       "price": 1200,
-      "image": "/argan_oil_30_white.png",
+      "image": "/argan_oil_30_no_bg.png",
       "gallery": [
-        "/argan_oil_30_white.png",
+        "/argan_oil_30_no_bg.png",
         "/argan_oil_double_yellow.png",
         "/argan_oil_double_white.png"
       ],
       "content": "30 ml",
-      "usage": "Fytyra: Aplikoni 2–3 pika në lëkurë të pastër dhe masazhoni lehtë.Flokët: Vendoseni në maja ose përdoreni si trajtim para larjes.Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
+      "benefits": "Nourishes and stimulates skin regeneration. Has anti-aging properties and improves elasticity. Strengthens hair fibers and helps prevent split ends. 100% natural and rich in vitamin E (tocopherols).",
+      "usage": "Face: Apply 2–3 drops and gently massage into the skin in the evening. Hair: Apply to the ends or use as a nourishing mask before washing. Body: Apply after showering on damp skin for maximum hydration.",
       "serviceIds": [
         "svc-oils"
       ]
@@ -39,17 +41,18 @@
     {
       "id": "prd-argan-elixir-50",
       "name": "Argan Oil 50ml",
-      "description": "ideale per: Dry skin, damaged hair, dehydration",
-      "fullDescription": "Vaji i arganit është një vaj 100% natyral, i përftuar me presim të ftohtë nga bërthamat e pemës Argania Spinosa në Marok. I njohur si “ari i lëngshëm”, ai është i pasur me Vitaminë E, acide yndyrore esenciale dhe antioksidantë që ndihmojnë në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+      "description": "Large size for long-term use and intensive hydration of skin and hair.",
+      "fullDescription": "Argan oil is a 100% natural cosmetic oil. Rich in Vitamin E, fatty acids, and antioxidants. This oil is a multifunctional moisturizer that helps nourish and protect the skin, hair, and nails.",
       "price": 1800,
-      "image": "/argan_oil_50_white.png",
+      "image": "/argan_oil_50_no_bg.png",
       "gallery": [
-        "/argan_oil_50_white.png",
+        "/argan_oil_50_no_bg.png",
         "/argan_oil_double_white.png",
         "/argan_oil_double_yellow.png"
       ],
       "content": "50 ml",
-      "usage": "Fytyra: Aplikoni 2–3 pika në lëkurë të pastër dhe masazhoni lehtë.Flokët: Vendoseni në maja ose përdoreni si trajtim para larjes.Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
+      "benefits": "Nourishes and stimulates skin regeneration. Has anti-aging properties and improves elasticity. Strengthens hair fibers and helps prevent split ends. 100% natural and rich in vitamin E (tocopherols).",
+      "usage": "Face: Apply 2–3 drops and gently massage into the skin in the evening. Hair: Apply to the ends or use as a nourishing mask before washing. Body: Apply after showering on damp skin for maximum hydration.",
       "serviceIds": [
         "svc-oils"
       ]
@@ -57,17 +60,18 @@
     {
       "id": "prd-nila-powder",
       "name": "Nila Powder 100gr",
-      "description": "Ideale per: Lekure te zbehte, ton jo uniform, rutina body care.",
-      "fullDescription": "Pluhuri Nila është një produkt tradicional maroken i përdorur për ndriçimin dhe zbutjen e lëkurës. I njohur për ngjyrën karakteristike blu, përdoret kryesisht në ritualet tradicionale të kujdesit të trupit.",
+      "description": "Mineral mask used for brightening, softening, and hydrating the skin.",
+      "fullDescription": "NILA powder is a natural mineral or plant-based powder traditionally used in skincare in North Africa. It is used for brightening, softening, and hydrating the skin, especially in rough areas such as knees, elbows, and underarms.",
       "price": 1300,
-      "image": "/nila_powder_white.png",
+      "image": "/nila_powder_no_bg.png",
       "gallery": [
-        "/nila_powder_white.png",
+        "/nila_powder_no_bg.png",
         "/nila_powder_plate.png",
         "/nila_powder_yellow.png"
       ],
       "content": "100 gr",
-      "usage": "Përziejeni me ujë trëndafili ose kos deri sa të krijohet një pastë homogjene. Aplikojeni për 10–15 minuta dhe shpëlajeni me ujë të vakët.",
+      "benefits": "Brightens and improves skin tone. Reduces the appearance of dark spots and hyperpigmentation. Gives the skin a natural glow. Provides deep pore cleansing.",
+      "usage": "Mix with rose water or yogurt until a smooth paste is formed. Apply as a mask for 10–15 minutes. Use 1–2 times per week.",
       "serviceIds": [
         "svc-powders"
       ]
@@ -75,17 +79,18 @@
     {
       "id": "prd-prickly-pear-seed-oil",
       "name": "Prickly Pear Seed Oil 30ml",
-      "description": "Ideale per: Lekure matue, te dehidratuar, pa shkelqim",
-      "fullDescription": "Një vaj luksoz dhe shumë i lehtë, i përftuar nga farat e Opuntia Ficus-Indica. I njohur për përmbajtjen e lartë të Vitaminës E dhe acideve yndyrore esenciale, ky vaj konsiderohet një nga vajrat më të çmuar për kujdesin e lëkurës.",
+      "description": "Known for its anti-aging effect, rich in Vitamin E, Vitamin K, and essential fatty acids.",
+      "fullDescription": "A luxurious and lightweight oil extracted from the seeds of Opuntia ficus-indica. This oil is considered one of the most valuable skincare oils. Prickly pear seed oil is fast-absorbing and derived from cactus seeds (Opuntia ficus-indica). Known for its anti-aging properties, it is rich in Vitamin E, Vitamin K, and essential fatty acids. It is highly valued for skincare, haircare, and nail care.",
+      "benefits": "Rich in antioxidants with powerful protective properties. Deeply hydrates and strengthens the skin barrier. Improves elasticity and natural skin glow. Nourishes hair and strengthens brittle nails.",
+      "usage": "Face: Apply 2–3 drops on clean skin, preferably in the evening. Hair: Apply a small amount to the ends or use as a pre-wash treatment. Nails: Massage 1 drop into cuticles daily.",
       "price": 2700,
-      "image": "/prickly_pear_serum_white.png",
+      "image": "/prickly_oil_no_bg.png",
       "gallery": [
-        "/prickly_pear_serum_white.png",
+        "/prickly_oil_no_bg.png",
         "/prickly_pear_3_white.png",
         "/prickly_peer_with_bg.png"
       ],
       "content": "30 ml",
-      "usage": "Fytyra: Aplikoni disa pika në mbrëmje mbi lëkurë të pastër.Flokët: Vendoseni në maja ose si maskë para larjes.Thonjtë: Masazhoni kutikulat çdo ditë.",
       "serviceIds": [
         "svc-oils"
       ]
@@ -93,17 +98,18 @@
     {
       "id": "prd-nila-mask",
       "name": "Nila Mask 200gr",
-      "description": "Ideale per: Lekure pa jete, ton jo uniform, self care rutine.",
-      "fullDescription": "Produkte tradicionale marokene të formuluara me pluhur indigo blu për pastrim dhe ndriçim të lëkurës.",
+      "description": "Helps brighten, soften, and deeply cleanse the skin while reducing pigmentation and dark spots.",
+      "fullDescription": "Traditional Moroccan skincare products formulated with blue indigo powder. They help brighten, soften, and deeply cleanse the skin while reducing pigmentation and dark spots.",
+      "benefits": "Detoxifies and deeply cleanses the skin. Brightens and evens skin tone. Leaves the skin soft and refreshed.",
+      "usage": "Apply to the face and body. Leave on for 10–20 minutes. Rinse with water and apply moisturizer.",
+      "image": "/nila_maks_no_bg.png",
       "price": 1800,
-      "image": "/nila-mask-white.png",
       "gallery": [
-        "/nila-mask-white.png",
+        "/nila_maks_no_bg.png",
         "/nila-mask-open.png",
         "/nila_mask_yellow.png"
       ],
       "content": "200 gr",
-      "usage": "Aplikojeni në fytyrë ose trup për 10–20 minuta dhe më pas shpëlajeni. Përdorni hidratues pas aplikimit.",
       "serviceIds": [
         "svc-masks"
       ]
@@ -111,17 +117,18 @@
     {
       "id": "prd-aker-fassi-powder",
       "name": "Aker Fassi Powder 100gr",
-      "description": "Ideale per: Glow natyral, kujdes per buzet, rutina body care.",
-      "fullDescription": "Jep ngjyrë natyrale buzëve dhe faqeve.Ndihmon në përmirësimin e shkëlqimit natyral të fytyrës.Përmban antioksidantë natyralë",
+      "description": "Used as a natural pigment for lips and cheeks, giving a fresh and natural look.",
+      "fullDescription": "Aker Fassi powder is a traditional beauty product from Morocco, made from dried poppy petals and pomegranate peel. It is used as a natural pigment for lips and cheeks, offering a fresh and natural appearance.",
+      "benefits": "Contains antioxidant and anti-aging properties. Enhances the skin’s natural glow.",
+      "usage": "Mix with a small amount of water or argan oil. Apply as a blush or lip tint.",
       "price": 1100,
-      "image": "/aker_fassi_white.png",
+      "image": "/aker_fassi_powder_no_bg.png",
       "gallery": [
-        "/aker_fassi_white.png",
+        "/aker_fassi_powder_no_bg.png",
         "/aker_fassi_powder_yellow.png",
         "/aker-fassi_plate.png"
       ],
       "content": "100 gr",
-      "usage": "Përziejeni me pak ujë ose vaj argani dhe aplikojeni në buzë ose faqe.",
       "serviceIds": [
         "svc-powders"
       ]
@@ -129,17 +136,18 @@
     {
       "id": "prd-tbrima-mask",
       "name": "Tbrima Mask 200gr",
-      "description": "Ideale per: Pore te bllokuara, teksture te ashper,  deep cleansing routine.",
-      "fullDescription": "Një përzierje tradicionale marokene me bazë bimore dhe argjile, e përdorur si maskë ose skrab detoksifikues.",
+      "description": "Used in traditional hammam rituals for deep cleansing and skin softening.",
+      "fullDescription": "Tbrima is a traditional Moroccan blend made with herbs and clay, used as a scrub or body mask. It is commonly used in traditional hammam rituals for deep cleansing and softening the skin.",
+      "benefits": "Soothes sensitive skin. Helps relieve irritation. Provides natural cleansing and a refreshing feeling. Improves skin texture.",
+      "usage": "Apply to clean skin and rinse with lukewarm water after 10 minutes.",
       "price": 1800,
-      "image": "/tbrima-mask-white.png",
+      "image": "/mask_tbrima_no_bg.png",
       "gallery": [
-        "/tbrima-mask-white.png",
+        "/mask_tbrima_no_bg.png",
         "/tbrima-mask-hand.png",
         "/tbira_mask_yellow.png"
       ],
       "content": "200 gr",
-      "usage": "Përziejeni me ujë ose kos dhe aplikojeni si maskë për 10–15 minuta.",
       "serviceIds": [
         "svc-masks"
       ]
@@ -147,34 +155,37 @@
     {
       "id": "prd-aker-fassi-mask",
       "name": "Aker Fassi Mask 200gr",
-      "description": "Ideale per: Lekure pa jete, rutina glow skiccare",
-      "fullDescription": "Ndihmon në rigjenerimin e lëkurës. Jep një pamje të freskët dhe natyrale. Ushqen lëkurën me antioksidantë",
+      "description": "Revitalizing mask for tired and dull skin.",
+      "fullDescription": "Aker Fassi Mask is a traditional Moroccan skincare treatment known for its brightening and antioxidant properties.",
+      "benefits": "Promotes skin regeneration. Gives a natural and fresh glow. Enriches the skin with antioxidants.",
+      "usage": "Apply to the face for 10–15 minutes. Use once a week.",
       "price": 1600,
-      "image": "/aker_fassi_mask_yellow.png",
+      "image": "/akerr_fassi_mask_no_bg.png",
       "gallery": [
-        "/aker_fassi_mask_yellow.png",
+        "/akerr_fassi_mask_no_bg.png",
         "/aker-fassi-mask-white.png",
         "/aker-fassi-mask-yellow.png"
       ],
       "content": "200 gr",
-      "usage": "Aplikojeni në fytyrë për 10–15 minuta dhe shpëlajeni me ujë të vakët.",
       "serviceIds": [
         "svc-masks"
       ]
     },
     {
       "id": "prd-nila-scrub",
-      "name": "Nila Scrub",
-      "description": "Purifying Moroccan black soap for soft, clean skin.",
-      "price": 24.0,
-      "image": "/nila_scrub_white.png",
+      "name": "Nila Scrub 200gr",
+      "description": "Helps exfoliate, brighten, and soften the skin while reducing roughness and dark spots.",
+      "fullDescription": "NILA Scrub is a natural skincare product inspired by Moroccan traditions and formulated with blue NILA powder. It helps exfoliate, brighten, and soften the skin while reducing roughness and the appearance of dark spots.",
+      "benefits": "Removes dead skin cells. Softens the skin and cleanses pores. Improves skin texture and appearance.",
+      "usage": "Apply to damp skin. Massage in circular motions for 2–3 minutes. Rinse thoroughly with warm water.",
+      "price": 1600.00,
+      "image": "/nila_scrub_no_bg.png",
       "gallery": [
-        "/nila_scrub_white.png",
+        "/nila_scrub_no_bg.png",
         "/nila_scrub_yellow.png",
         "/nila_scrub_white.png"
       ],
       "content": "250 gr",
-      "usage": "Apply on damp skin, leave briefly, then rinse and exfoliate.",
       "serviceIds": [
         "svc-soaps",
         "svc-scrubs"
@@ -183,17 +194,18 @@
     {
       "id": "prd-black-soap",
       "name": "Black Soap 200gr",
-      "description": "Ideale per: Body detox, deep cleansing, self care routine",
-      "fullDescription": "* Pastron thellësisht poret. Ndihmon në largimin e papastërtive. Zbut dhe detoksifikon lëkurën. Përgatit lëkurën për eksfolim.",
-      "price": 1600,
-      "image": "/black_soap_open.png",
+      "description": "Traditional plant-based soap known for its deep cleansing and exfoliating properties.",
+      "fullDescription": "African Black Soap is a traditional plant-based soap known for its deep cleansing and exfoliating properties.",
+      "benefits": "Deeply cleanses the skin. Prepares the body for exfoliation. Softens and detoxifies the skin.",
+      "usage": "Apply during a warm shower. Leave on for 5–10 minutes. Follow with exfoliation using a Kessa glove.",
+      "price": 1100,
+      "image": "/black_soapp_no_bg.png",
       "gallery": [
-        "/black_soap_open.png",
+        "/black_soapp_no_bg.png",
         "/black-soap-with-bg.png",
         "/black_soap_no_bg.png"
       ],
       "content": "200 gr",
-      "usage": "Përdoreni gjatë dushit në lëkurë të lagur dhe vazhdoni me dorezën Kessa për eksfolim maksimal.",
       "serviceIds": [
         "svc-soaps"
       ]
@@ -201,26 +213,29 @@
     {
       "id": "prd-rose-water",
       "name": "Rose Water 100ml",
-      "description": "Ideale per: Lekure sensitive, hidration mist, daily scincare routine",
-      "fullDescription": "Freskon dhe hidraton lëkurën. Qetëson irritimet. Ndihmon në balancimin e lëkurës. Përgatit lëkurën për trajtime të tjera.",
+      "description": "A fragrant and multifunctional liquid widely used in natural skincare.",
+      "fullDescription": "Rose Water is a fragrant and multifunctional liquid widely used in natural skincare.",
+      "benefits": "Hydrates and refreshes the skin. Works as a natural toner. Soothes skin irritation. Prepares the skin for other treatments.",
+      "usage": "Apply as a toner after cleansing the skin. Use as a refreshing facial mist during the day. Mix into natural masks for extra hydration.",
       "price": 900,
-      "image": "/rose_water_yellow.png",
+      "image": "/rose_water_no_bg.png",
       "gallery": [
-        "/rose_water_yellow.png",
+        "/rose_water_no_bg.png",
         "/rose_water_white.png",
         "/rose_water_bottle.png"
       ],
       "content": "100 ml",
-      "usage": "Përdoreni si tonik pas pastrimit ose si spërkatës freskues gjatë ditës.",
       "serviceIds": [
         "svc-accessories"
       ]
     },
     {
       "id": "prd-kessa-glove",
-      "name": "Kessa Glove",
-      "description": "Ideale per: Body exfoliation, smooth skin, hammam routine",
-      "fullDescription": "Përfitimet: Heq qelizat e vdekura.Ndihmon në stimulimin e qarkullimit. Lë lëkurën të lëmuar dhe të pastër. Përmirëson efektin e trajtimeve të tjera.",
+      "name": "Kessa Exfoliating Glove",
+      "description": "Traditional accessory for deep exfoliation and removal of dead skin cells.",
+      "fullDescription": "The Kessa glove is a traditional accessory used in Moroccan hammam rituals. It helps deeply exfoliate the skin, remove dead skin cells, and improve skin texture.",
+      "benefits": "Removes dead skin cells. Helps cleanse pores. Leaves the skin softer and smoother.",
+      "usage": "Use with gentle circular motions after a warm shower or after applying black soap.",
       "price": 900,
       "image": "/gloves_no_bg.png",
       "gallery": [
@@ -229,7 +244,6 @@
         "/gloves_one.png"
       ],
       "content": "1 piece",
-      "usage": "Përdoreni mbi lëkurë të lagur pas sapunit të zi me lëvizje të forta dhe të kontrolluara.",
       "serviceIds": [
         "svc-accessories"
       ]

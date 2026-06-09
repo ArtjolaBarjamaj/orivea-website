@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import useRevealOnScroll from "@/hooks/useRevealOnScroll";
 import Link from "next/link";
+import useRevealOnScroll from "@/hooks/useRevealOnScroll";
 import {
     catalogServices,
     resolveCatalogImage,

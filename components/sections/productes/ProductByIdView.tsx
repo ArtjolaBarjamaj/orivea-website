@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { getLocalizedProductDescription, getLocalizedProductName, getLocalizedProductUsage, resolveCatalogImage } from "@/lib/catalog";
+import { getLocalizedProductBenefits, getLocalizedProductDescription, getLocalizedProductFullDescriptionById, getLocalizedProductName, getLocalizedProductUsage, resolveCatalogImage } from "@/lib/catalog";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 type ProductItem = {
@@ -22,37 +23,67 @@ type ProductByIdViewProps = {
     product: ProductItem;
     imageSrc: string | StaticImageData;
     cartCount: number;
-    onAddToCart: (product: ProductItem) => void;
+    currentProductQuantity: number;
+    onAddToCart: (product: ProductItem, quantity: number) => void;
     relatedProducts: ProductItem[];
     resolveImage: (product: ProductItem) => string | StaticImageData;
 };
 
-function formatPrice(price: number) {
-    return `Lek ${price.toFixed(2)}`;
+function formatPrice(price?: number | null) {
+    const safePrice = typeof price === "number" && Number.isFinite(price) ? price : 0;
+    return `Lek ${safePrice.toFixed(2)}`;
 }
 
 export default function ProductByIdView({
     product,
     imageSrc,
     cartCount,
+    currentProductQuantity,
     onAddToCart,
     relatedProducts,
     resolveImage,
 }: ProductByIdViewProps) {
     const { lang } = useLanguage();
     const isSq = lang === "sq";
+    const [quantity, setQuantity] = useState(Math.max(1, currentProductQuantity || 1));
     const gallery = product.gallery?.length ? product.gallery : [product.image, product.image, product.image];
 
-    const ritualSteps = (getLocalizedProductUsage(product, lang) || (isSq
-        ? "Ngroh një sasi të vogël në pëllëmbë. Aplikoje butësisht në lëkurë të pastër. Lëre të përthithet natyrshëm."
-        : "Warm a small amount between palms. Apply gently on clean skin. Let it absorb naturally."))
-        .split(".")
-        .map((step) => step.trim())
-        .filter(Boolean)
-        .slice(0, 3);
+    useEffect(() => {
+        setQuantity(Math.max(1, currentProductQuantity || 1));
+    }, [currentProductQuantity, product.id]);
+
+    const defaultRitualSteps = isSq
+        ? [
+            "Ngroh një sasi të vogël në pëllëmbë",
+            "Aplikoje butësisht në lëkurë të pastër",
+            "Lëre të përthithet natyrshëm",
+        ]
+        : [
+            "Warm a small amount between palms",
+            "Apply gently on clean skin",
+            "Let it absorb naturally",
+        ];
+
+    const localizedUsage = getLocalizedProductUsage(product, lang)?.trim();
+    const localizedBenefits = getLocalizedProductBenefits(product, lang)?.trim();
+
+    const ritualBenefits = localizedBenefits
+        ? localizedBenefits
+            .split(".")
+            .map((benefit: string) => benefit.trim())
+            .filter(Boolean)
+        : [];
+
+    const ritualSteps = localizedUsage
+        ? localizedUsage
+            .split(".")
+            .map((step) => step.trim())
+            .filter(Boolean)
+            .slice(0, 3)
+        : defaultRitualSteps;
 
     function handleAddToCart() {
-        onAddToCart(product);
+        onAddToCart(product, quantity);
     }
 
     return (
@@ -121,7 +152,19 @@ export default function ProductByIdView({
                         <div className="mt-6">
                             <p className="text-[11px] uppercase tracking-[0.14em] text-[#403a35]">{isSq ? "Përshkrimi" : "Description"}</p>
                             {product.description && <p className="mt-3 text-[13px] leading-7 text-[#66615b] md:text-[14px]">{getLocalizedProductDescription(product, lang)}</p>}
-                            {product.fullDescription && <p className="mt-3 text-[13px] leading-7 text-[#66615b] md:text-[14px]">{product.fullDescription}</p>}
+                            {product.fullDescription && <p className="mt-3 text-[13px] leading-7 text-[#66615b] md:text-[14px]">{getLocalizedProductFullDescriptionById(product.id, product.fullDescription, lang)}</p>}
+                        </div>
+
+                        <div className="mt-8">
+                            <p className="text-[11px] uppercase tracking-[0.14em] text-[#403a35]">{isSq ? "Përfitimet" : "Benefits"}</p>
+                            <ol className="mt-3 space-y-3.5">
+                                {ritualBenefits.map((benefit: string, index: number) => (
+                                    <li key={index} className="grid grid-cols-[24px_1fr] items-start gap-2 text-[13px] leading-6 text-[#66615b] md:text-[14px]">
+                                        <span className="text-[10px] tracking-[0.1em] text-[#8d857d]">{String(index + 1).padStart(2, "0")}</span>
+                                        <span>{/[.!?]$/.test(benefit) ? benefit : `${benefit}.`}</span>
+                                    </li>
+                                ))}
+                            </ol>
                         </div>
 
                         <div className="mt-8">
@@ -130,10 +173,32 @@ export default function ProductByIdView({
                                 {ritualSteps.map((step, index) => (
                                     <li key={index} className="grid grid-cols-[24px_1fr] items-start gap-2 text-[13px] leading-6 text-[#66615b] md:text-[14px]">
                                         <span className="text-[10px] tracking-[0.1em] text-[#8d857d]">{String(index + 1).padStart(2, "0")}</span>
-                                        <span>{step}.</span>
+                                        <span>{/[.!?]$/.test(step) ? step : `${step}.`}</span>
                                     </li>
                                 ))}
                             </ol>
+                        </div>
+
+                        <div className="mt-8 inline-flex w-50 items-center border border-[#cfc8c1]">
+                            <button
+                                type="button"
+                                onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+                                className="h-16 w-20 text-3xl leading-none text-[#161616] transition-colors hover:bg-[#f2efeb]"
+                                aria-label={isSq ? "Ule sasinë" : "Decrease quantity"}
+                            >
+                                -
+                            </button>
+                            <span className="flex h-16 flex-1 items-center justify-center text-[2rem] text-[#161616]">
+                                {quantity}
+                            </span>
+                            <button
+                                type="button"
+                                onClick={() => setQuantity((prev) => prev + 1)}
+                                className="h-16 w-20 text-3xl leading-none text-[#161616] transition-colors hover:bg-[#f2efeb]"
+                                aria-label={isSq ? "Rrit sasinë" : "Increase quantity"}
+                            >
+                                +
+                            </button>
                         </div>
 
                         <button
@@ -141,7 +206,7 @@ export default function ProductByIdView({
                             onClick={handleAddToCart}
                             className="mt-8 inline-flex w-full items-center justify-center bg-[#121416] px-5 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#2a2e32]"
                         >
-                            {isSq ? "Shto në shportë" : "Add to bag"}
+                            {isSq ? "Shto në shportë" : "Add to cart"}
                         </button>
                     </div>
                 </div>
@@ -151,7 +216,7 @@ export default function ProductByIdView({
                     <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
                         {relatedProducts.map((related) => (
                             <article key={related.id} className="bg-transparent">
-                                <Link href={`/productes/${related.id}`} className="block">
+                                <Link href={`/productes/${related.id}`} className="group block">
                                     <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#ddd6ce]">
                                         <Image
                                             src={resolveImage(related)}
@@ -161,9 +226,9 @@ export default function ProductByIdView({
                                             className="object-cover"
                                         />
                                     </div>
+                                    <h3 className="mt-2 font-serif text-sm leading-tight text-[#2f251d] transition-colors group-hover:text-[#5f432c] md:text-base">{getLocalizedProductName(related, lang)}</h3>
+                                    <p className="mt-1 text-xs text-[#5e5a55]">{formatPrice(related.price)}</p>
                                 </Link>
-                                <h3 className="mt-2 font-serif text-sm leading-tight text-[#2f251d] md:text-base">{getLocalizedProductName(related, lang)}</h3>
-                                <p className="mt-1 text-xs text-[#5e5a55]">{formatPrice(related.price)}</p>
                             </article>
                         ))}
                     </div>

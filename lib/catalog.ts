@@ -12,6 +12,7 @@ export type CatalogProduct = {
   gallery?: string[];
   content?: string;
   usage?: string;
+  benefits?: string;
   serviceIds: string[];
 };
 
@@ -64,62 +65,98 @@ const serviceSqMap: Record<string, { name: string; description: string }> = {
   },
 };
 
-const productSqMap: Record<string, { name: string; description: string; usage?: string }> = {
+const productSqMap: Record<string, { name: string; description: string; fullDescription?: string; usage?: string; benefits?: string; }> = {
   "prd-argan-elixir-15": {
-    name: "Eliksir Argan i Pastër 15ml",
-    description: "Vaj argani i ftohtë për ushqim të thellë dhe shkëlqim natyral.",
-    usage: "Ngroh tri pika në pëllëmbë. Aplikoje me prekje të buta në lëkurë të njomë. Lëre të përthithet natyrshëm.",
+    name: "Vaj Argan i Pastër 15ml",
+    description: "Madhësi udhëtimi, e pasur me vitaminë E. Ideale për përdorim të përditshëm në lëkurë dhe flokë.",
+    fullDescription: "Vaji i arganit është një vaj kozmetik 100% natyral. I pasur me Vitaminë E, acide yndyrore dhe antioksidantë. Ky vaj eshte nje hidratues multifunksional që ndihmon në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+    benefits: "Ushqen dhe stimulon rigjenerimin e lëkurës. Ka veti anti-aging dhe permireson elasticitetin. Forcon fibrat e flokve dhe ndihmon në parandalimin te dyfishta. 100% natyral dhe i pasur me vitamine E (tokoferole).",
+    usage: "Fytyra: Aplikoni 2-3 pika dhe masazhoni lehtë në lekurë në mbrëmje. Flokët: Aplikojeni në maja ose përdoreni si maske ushqyese para larjes. Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
   },
   "prd-argan-elixir-30": {
-    name: "Eliksir Argan i Pastër 30ml",
-    description: "Format më i madh i eliksirit tonë për ritualin e përditshëm.",
-    usage: "Aplikoje mëngjes dhe mbrëmje në lëkurë të pastër me masazh të lehtë.",
+    name: "Vaj Argan i Pastër 30ml",
+    description: "Sasi e mesme, e pasur me vitaminë E për hidratim të përditshëm të lëkurës dhe flokëve.",
+    fullDescription: "Vaji i arganit është një vaj kozmetik 100% natyral. I pasur me Vitaminë E, acide yndyrore dhe antioksidantë. Ky vaj eshte nje hidratues multifunksional që ndihmon në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+    benefits: "Ushqen dhe stimulon rigjenerimin e lëkurës. Ka veti anti-aging dhe permireson elasticitetin. Forcon fibrat e flokve dhe ndihmon në parandalimin te dyfishta. 100% natyral dhe i pasur me vitamine E (tokoferole).",
+    usage: "Fytyra: Aplikoni 2-3 pika dhe masazhoni lehtë në lekurë në mbrëmje. Flokët: Aplikojeni në maja ose përdoreni si maske ushqyese para larjes. Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
   },
-  "prd-rhassoul-clay-mask": {
-    name: "Maskë me Baltë Rhassoul",
-    description: "Maskë me minerale që pastron poret dhe lëmon teksturën e lëkurës.",
-    usage: "Përzieje me ujë, apliko një shtresë të hollë dhe shpëlaje pas 10 minutash.",
+  "prd-argan-elixir-50": {
+    name: "Vaj Argan i Pastër 50ml",
+    description: "Sasi e madhe për përdorim afatgjatë dhe hidratim intensiv të lëkurës dhe flokëve.",
+    fullDescription: "Vaji i arganit është një vaj kozmetik 100% natyral. I pasur me Vitaminë E, acide yndyrore dhe antioksidantë. Ky vaj eshte nje hidratues multifunksional që ndihmon në ushqimin dhe mbrojtjen e lëkurës, flokëve dhe thonjve.",
+    benefits: "Ushqen dhe stimulon rigjenerimin e lëkurës. Ka veti anti-aging dhe permireson elasticitetin. Forcon fibrat e flokve dhe ndihmon në parandalimin te dyfishta. 100% natyral dhe i pasur me vitamine E (tokoferole).",
+    usage: "Fytyra: Aplikoni 2-3 pika dhe masazhoni lehtë në lekurë në mbrëmje. Flokët: Aplikojeni në maja ose përdoreni si maske ushqyese para larjes. Trupi: Aplikojeni pas dushit në lëkurë të lagur për hidratim maksimal.",
   },
-  "prd-damask-rose-mist": {
-    name: "Spray Trëndafili Damask",
-    description: "Spray hidratues floral që freskon dhe qetëson gjatë gjithë ditës.",
-    usage: "Spërkate fytyrën nga distanca dhe preke lehtë për përthithje.",
+  "prd-nila-powder": {
+    name: "Pluhur NILA",
+    description: "Maskë me minerale perdoret për ndricim, zbutje dhe hidratim të lëkurës.",
+    fullDescription: "Pluhuri NILA është një pluhur natyral me origjinë minerale ose bimore tradiconalisht i përdorur ne kujdesin e lëkurës ne Afriken e Veriut.Perdoret per ndricim, zbutje dhe hidratim te lekures, vecanerisht ne zonat me te ashpra si gjunjte brrylat dhe sqetullat.",
+    benefits: "Ndricon dhe permirson tonin e lekures. Redukton shfaqen e njollave te errta dhe hiperpigmentimit. Jep shkelqim natyral lekures. Ofron pastrim te thelle te poreve.",
+    usage: "Perzjejeni me uje trendafili ose kos derisa te krijohet nje mas homogjene. Aplikojeni si maske per 10-15 minuta. Perdoreni 1-2 here ne jave.",
   },
-  "prd-nilotica-shea-balm": {
-    name: "Balsam Nilotica Shea",
-    description: "Balsam i pasur që mbyll hidratimin dhe zbut zonat e thata.",
-    usage: "Shkri një sasi të vogël me gishta dhe aplikoje aty ku ke nevojë.",
+  "prd-prickly-pear-seed-oil": {
+    name: "Vaj nga Farat e Fikut të Indisë 30ml",
+    description: "I njohur per efektin e tij anti-aging, i pasur me Vitaminë E, Vitaminë K dhe acide yndyrore esenciale. ",
+    fullDescription: "Një vaj luksoz dhe shumë i lehtë, i përftuar nga farat e Opuntia Ficus-Indica. I njohur për përmbajtjen e lartë të Vitaminës E dhe acideve yndyrore esenciale, ky vaj konsiderohet një nga vajrat më të çmuar për kujdesin e lëkurës.Vaji nga farat e Fikut të Indisë eshtë një vaj luksoz dhe i lehtë, që perthithet shpejt dhe perftohet nga farat e kaktusit Opuntia ficus-indica.I njohur per efektin e tij anti-aging, ky vaj eshtë i pasur me Vitaminë E, Vitaminë K dhe acide yndyrore esenciale. Konsiderohet një nga vajrat më të gmuar per kujdesin e lëkurës, flokëve dhe thonjve.",
+    benefits: "I pasur me antioksidantë me veti të fuqishme mbrojtëseHidraton thellësisht dhe forcon barrierën mbrojtëse te lëkurësPërmirëson elasticitetin dhe shkëlqimin natyral të lëkurësUshqen flokët dhe forcon thonjtë e brishtë",
+    usage: "Fytyra: Aplikoni 2-3 pika në lëkurë të paster, preferohet në mbrëmje.Flokët: Vendosni një sasi të vogël ne maja ose përdoreni si trajtim para larjes.Thonjtë: Masazhoni l pikë në kutikula çdo ditë.",
+  },
+  "prd-nila-mask": {
+    name: "NILA Maskë 200gr",
+    description: "Ndihmojnë në ndriçimin, zbutjen dhe pastrimin e thellë të lëkurës, duke reduktuar pigmentimin dhe njollat e errëta.",
+    fullDescription: "Produkte tradicionale marokene për kujdesin e lekurës, tẻ formuluara me pluhur indigo blu. Ndihmojnë në ndriçimin, zbutjen dhe pastrimin e thellë të lëkurës, duke reduktuar pigmentimin dhe njollat e errëta.",
+    benefits: "Detoksifikon dhe pastron thellësisht lëkurën. Ndriçon dhe barazon tonin e lëkurës. Lë lëkurën të butë dhe të freskët",
+    usage: "Aplikojeni në fytyrë dhe trup. Lëreni të veprojë për 10-20 minuta.Shpëlajeni me ujë dhe aplikoni kremhidratues.",
   },
   "prd-aker-fassi-powder": {
-    name: "Pluhur Aker Fassi",
-    description: "Pluhur botanik tradicional për ton të njëtrajtshëm dhe shkëlqim.",
-    usage: "Përzieje me ujë trëndafili dhe aplikoje për 8-10 minuta.",
+    name: "Pluhur Aker Fassi 100gr",
+    description: "Përdoret si pigment natyral për buzët dhe faqet, duke ofruar një pamje të freskët dhe natyrale.",
+    fullDescription: "Pluhuri Aker Fassi eshtë një produkt tradicional bukurie nga Maroku, i perftuar nga petalet e thata të lulëkuqes dhe lëkura e shegés. Përdoret si pigment natyral për buzët dhe faqet, duke ofruar një pamje të freskët dhe natyrale.",
+    benefits: "Përmban veti antioksiduese dhe anti-aging. Thekson shkëlqimin natyral të fytyrës",
+    usage: " Perziejeni me pak uje ose vaj argani.Aplikojeni si blush ose tint për buzët.",
   },
   "prd-tbrima-mask": {
-    name: "Maskë Tbrima",
-    description: "Maskë balancuese që qetëson dhe përmirëson pamjen e lëkurës.",
+    name: "Maskë Tbrima 200gr",
+    description: "Perdoret në ritualet tradicionale të hammamit për pastrim të thellë dhe zbutje të lëkures.",
+    fullDescription: "Tbrima eshtë një përzierje tradicionale marokene me bazë bimore dhe argjile, e përdorur si skrab ose maskë për trupin. Perdoret në ritualet tradicionale të hammamit për pastrim të thellë dhe zbutje të lëkures.",
+    benefits: "Qeteson lëkurën e ndjeshme. Ndihmon ne lehtesimin e irritimeve.Ofron pastrim natyral dhe ndjesi freskie.Permirison teksturën e lekures.",
     usage: "Aplikoje në lëkurë të pastër dhe shpëlaje me ujë të vakët pas 10 minutash.",
   },
   "prd-aker-fassi-mask": {
-    name: "Maskë Aker Fassi",
+    name: "Maskë Aker Fassi 200gr",
     description: "Maskë rigjallëruese për lëkurë të lodhur dhe pa shkëlqim.",
-    usage: "Përdore 2-3 herë në javë si pjesë e ritualit të mbrëmjes.",
+    fullDescription: "Maska Aker Fassi eshte nje trajtim tradicional maroken per kujdesin e lekures, injohur per vetite ndriguese dhe antioksiduese.",
+    benefits: "Nxit rigjenerimin e lekures. Jep nje nuancë natyrale dhe te freskët. Pasuron lekurën me antioksidante",
+    usage: "Aplikojeni ne fytyre per 10-15 minuta. Perdoreni l here ne jave"
   },
-  "prd-nila-mask": {
-    name: "Maskë NILA",
-    description: "Maskë minerale kremoze që rrit butësinë dhe shkëlqimin.",
-    usage: "Aplikoje në mënyrë të barabartë dhe hiqe pas 8-12 minutash.",
+  "prd-nila-scrub": {
+    name: "NILA Skrab 200gr",
+    description: "Ndihmon në eksfolimin, ndriçimin dhe zbutjen e lëkurës, duke reduktuar ashpërsiné dhe pamjen e njollave te errëta.",
+    fullDescription: "Nila Scrub eshtë një produkt natyral per kujdesin e lekurës, i frymëzuar nga tradita marokene dhe i formuluar me pluhur Nila blu.Ndihmon në eksfolimin, ndriçimin dhe zbutjen e lëkurës, duke reduktuar ashpërsiné dhe pamjen e njollave te errëta.",
+    benefits: "Largon qelizat e vdekura të lëkurës. Zbut lëkurën dhe pastron poret. Përmirëson strukturën dhe teksturën e lëkurës",
+    usage: "Aplikojeni në lëkurë të lagur. Masazhojeni me lëvizje rrethore për 2-3 minuta. Shpelajeni mirë me ujë të ngrohtë.",
   },
   "prd-black-soap": {
-    name: "Sapun i Zi",
-    description: "Sapun maroken pastrues për lëkurë të butë dhe të pastër.",
-    usage: "Aplikoje në lëkurë të njomë, lëre pak dhe pastaj shpëlaje.",
+    name: "SAPUN I ZI AFRIKAN 200gr",
+    description: "Sapun tradicional me bazë bimore, injohur per vetite pastruese dhe eksfoliuese.",
+    fullDescription: "Sapuni i Zi Afrikan ishte nje sapun tradicional me bazë bimore, injohur per vetite pastruese dhe eksfoliuese.",
+    benefits: "Pastron thellesisht lëkurën .Pergatit trupin per eksfolimZbut dhe detoksifikon lëkurën.Zbut dhe detoksifikon lëkurën",
+    usage: "Aplikojeni gjate nje dushi tengrohte.Lëreni te veproje për 5-10minuta.Vazhdoni me eksfolim duke perdorur dorezën Kessa."
+  },
+  "prd-rose-water": {
+    name: "Ujë Trëndafili 100ml",
+    description: "Lëng aromatik dhe shumëfunksional, i përdorur gjerësisht në kujdesin natyral të lëkurës",
+    fullDescription: "Uji i Trëndafilit eshtë një lëng aromatik dhe shumëfunksional, i përdorur gjerësisht në kujdesin natyral të lëkurës.",
+    benefits: "Hidraton dhe freskon lëkurën. Funksionon si tonik natyral. Qetëson irritimet e lekurës. Përgatit lekurën për trajtime të tjera",
+    usage: "Aplikojeni si tonik pas pastrimit të lekurës. Përdoreni si spërkatës freskues gjatë ditës. Përzieni në maska natyrale për efekt shtesë hidratues."
   },
   "prd-kessa-glove": {
     name: "Dorëzë Eksfoliuese Kessa",
-    description: "Aksesor esencial për eksfolim të thellë gjatë dushit.",
-    usage: "Përdore me lëvizje rrethore të buta pas dushit të ngrohtë.",
-  },
+    description: "Aksesor tradicional për eksfolim të thellë dhe largimin e qelizave të vdekura të lëkurës.",
+    fullDescription: "Dorëza Kessa është një aksesor tradicional i përdorur në ritualet e hammamit maroken. Ndihmon në eksfolimin e thellë të lëkurës, largimin e qelizave të vdekura dhe përmirësimin e teksturës së saj.",
+    benefits: "Largon qelizat e vdekura të lëkurës. Ndihmon në pastrimin e poreve. E lë lëkurën më të butë dhe të lëmuar.",
+    usage: "Përdoreni me lëvizje rrethore të buta pas dushit të ngrohtë ose pas përdorimit të sapunit të zi."
+  }
 };
 
 export function normalizePublicImagePath(path?: string) {
@@ -159,6 +196,11 @@ export function getLocalizedProductUsage(product: CatalogProduct, lang: Language
   return productSqMap[product.id]?.usage ?? product.usage;
 }
 
+export function getLocalizedProductBenefits(product: CatalogProduct, lang: LanguageCode) {
+  if (lang === "en") return product.benefits ?? product.benefits;
+  return productSqMap[product.id]?.benefits ?? product.benefits ?? product.benefits;
+}
+
 export function getLocalizedProductNameById(productId: string, fallbackName: string, lang: LanguageCode) {
   if (lang === "en") return fallbackName;
   return productSqMap[productId]?.name ?? fallbackName;
@@ -167,6 +209,12 @@ export function getLocalizedProductNameById(productId: string, fallbackName: str
 export function getLocalizedServiceNameById(serviceId: string, fallbackName: string, lang: LanguageCode) {
   if (lang === "en") return fallbackName;
   return serviceSqMap[serviceId]?.name ?? fallbackName;
+}
+
+
+export function getLocalizedProductFullDescriptionById(productId: string, fallbackFullDescription: string, lang: LanguageCode) {
+  if (lang === "en") return fallbackFullDescription;
+  return productSqMap[productId]?.fullDescription ?? fallbackFullDescription;
 }
 
 export function getServiceById(serviceId: string) {

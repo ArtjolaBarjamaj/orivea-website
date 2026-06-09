@@ -3,15 +3,18 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/contexts/CartContext";
 import { catalogProducts, getLocalizedProductDescription, getLocalizedProductName, resolveCatalogImage } from "@/lib/catalog";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-function formatPrice(price: number) {
-  return `$${price.toFixed(2)}`;
+function formatPrice(price?: number | null) {
+  const safePrice = typeof price === "number" && Number.isFinite(price) ? price : 0;
+  return `Lek ${safePrice.toFixed(2)}`;
 }
 
 export default function ProductsPage() {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const { totalItems } = useCart();
   const { lang } = useLanguage();
@@ -45,32 +48,41 @@ export default function ProductsPage() {
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {paginatedProducts.map((product) => (
-            <article key={product.id} className="bg-transparent">
-              <div className="relative mb-3 aspect-square w-full overflow-hidden bg-[#e6e1dc] p-4">
-                <div className="relative h-full w-full">
-                  <Image
-                    src={resolveCatalogImage(product.image)}
-                    alt={getLocalizedProductName(product, lang)}
-                    fill
-                    sizes="(max-width: 768px) 45vw, 23vw"
-                    className="object-contain"
-                  />
+            <article
+              key={product.id}
+              className="bg-transparent cursor-pointer"
+              role="link"
+              tabIndex={0}
+              onClick={() => router.push(`/productes/${product.id}`)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  router.push(`/productes/${product.id}`);
+                }
+              }}
+            >
+                <div className="relative mb-3 aspect-square w-full overflow-hidden bg-[#e6e1dc] p-4">
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={resolveCatalogImage(product.image)}
+                      alt={getLocalizedProductName(product, lang)}
+                      fill
+                      sizes="(max-width: 768px) 45vw, 23vw"
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
-              </div>
-
-              <h2 className="font-serif text-[1.05rem] leading-tight text-[#2f251d] md:text-[1.2rem]">{getLocalizedProductName(product, lang)}</h2>
-              <p className="mt-1 text-sm text-[#6f655b]">{formatPrice(product.price)}</p>
-              <p className="mt-2 min-h-[3.25rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
-                {getLocalizedProductDescription(product, lang)}
-              </p>
-              <div>
+                <h2 className="font-serif text-[1.05rem] leading-tight text-[#2f251d] transition-colors hover:text-[#5f432c] md:text-[1.2rem]">{getLocalizedProductName(product, lang)}</h2>
+                <p className="mt-1 text-sm text-[#6f655b]">{formatPrice(product.price)}</p>
+                <p className="mt-2 min-h-[3.25rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
+                  {getLocalizedProductDescription(product, lang)}
+                </p>
                 <Link
                   href={`/productes/${product.id}`}
                   className="mt-2 inline-block text-[10px] uppercase tracking-[0.12em] text-[#7e5e42] underline underline-offset-4 hover:text-[#5f432c]"
                 >
                   {isSq ? "Shiko produktin" : "View product"}
                 </Link>
-              </div>
             </article>
           ))}
         </div>

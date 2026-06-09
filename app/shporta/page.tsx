@@ -12,7 +12,7 @@ type CheckoutFormState = {
 };
 
 function formatPrice(price: number) {
-  return `$${price.toFixed(2)}`;
+  return `Lek ${price.toFixed(2)}`;
 }
 
 export default function ShportaPage() {

@@ -15,7 +15,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ProductByIdPage() {
   const params = useParams<{ id?: string | string[] }>();
-  const { addItem, totalItems } = useCart();
+  const { addItem, updateQuantity, removeItem, totalItems, items } = useCart();
   const { lang } = useLanguage();
   const isSq = lang === "sq";
   const rawId = Array.isArray(params.id) ? params.id[0] : params.id;
@@ -29,15 +29,32 @@ export default function ProductByIdPage() {
     return catalogProducts.filter((item) => item.id !== productId).slice(0, 4);
   }, [productId]);
 
-  function addToCart(item: CatalogProduct) {
-    const resolvedImage = resolveCatalogImage(item.image);
+  const currentProductQuantity = useMemo(() => {
+    return items
+      .filter((item) => item.id === productId)
+      .reduce((sum, item) => sum + item.quantity, 0);
+  }, [items, productId]);
 
-    addItem({
-      id: item.id,
-      name: getLocalizedProductName(item, lang),
-      price: item.price,
-      image: typeof resolvedImage === "string" ? resolvedImage : undefined,
-    });
+  function addToCart(item: CatalogProduct, quantity: number) {
+    const safeQuantity = Math.max(1, quantity);
+    const resolvedImage = resolveCatalogImage(item.image);
+    const matchingItems = items.filter((cartItem) => cartItem.id === item.id);
+
+    if (matchingItems.length === 0) {
+      addItem({
+        id: item.id,
+        name: getLocalizedProductName(item, lang),
+        price: item.price,
+        image: typeof resolvedImage === "string" ? resolvedImage : undefined,
+      }, safeQuantity);
+      return;
+    }
+
+    const [firstMatch, ...duplicates] = matchingItems;
+    updateQuantity(firstMatch.key, safeQuantity);
+
+    // Keep one cart row per product id if duplicates exist from older entries.
+    duplicates.forEach((entry) => removeItem(entry.key));
   }
 
   if (!product) {
@@ -61,6 +78,7 @@ export default function ProductByIdPage() {
       product={product}
       imageSrc={imageSrc}
       cartCount={totalItems}
+      currentProductQuantity={currentProductQuantity}
       onAddToCart={addToCart}
       relatedProducts={relatedProducts}
       resolveImage={resolveImage}

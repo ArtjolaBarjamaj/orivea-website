@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useMemo } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/contexts/CartContext";
 import {
@@ -27,6 +27,7 @@ function formatPrice(price: number) {
 
 export default function ServiceProductsPage() {
   const params = useParams<{ id?: string | string[] }>();
+  const router = useRouter();
   const { totalItems } = useCart();
   const { lang } = useLanguage();
   const isSq = lang === "sq";
@@ -98,10 +99,22 @@ export default function ServiceProductsPage() {
             {isSq ? "Nuk ka ende produkte për këtë shërbim." : "No products added for this service yet."}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-6">
             {products.map((product) => (
-              <article key={product.id} className="bg-transparent">
-                <Link href={buildProductHref(product)} className="block">
+              <article
+                key={product.id}
+                className="bg-transparent cursor-pointer"
+                role="link"
+                tabIndex={0}
+                onClick={() => router.push(buildProductHref(product))}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    router.push(buildProductHref(product));
+                  }
+                }}
+              >
+                <div className="grid gap-1">
                   <div className="relative mb-3 aspect-square w-full overflow-hidden bg-[#e6e1dc] p-4">
                     <div className="relative h-full w-full">
                       <Image
@@ -113,14 +126,22 @@ export default function ServiceProductsPage() {
                       />
                     </div>
                   </div>
-                </Link>
-                <Link href={buildProductHref(product)} className="font-serif text-[1.05rem] leading-tight text-[#2f251d] hover:text-[#5f432c] md:text-[1.2rem]">
-                  {getLocalizedProductName(product, lang)}
-                </Link>
-                <p className="mt-1 text-sm text-[#6f655b]">{formatPrice(product.price)}</p>
-                <p className="mt-2 min-h-[3.25rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
-                  {getLocalizedProductDescription(product, lang)}
-                </p>
+                  <span className="font-serif text-[1.05rem] leading-tight text-[#2f251d] transition-colors hover:text-[#5f432c] md:text-[1.2rem]">
+                    {getLocalizedProductName(product, lang)}
+                  </span>
+                  <p className="mt-1 text-sm text-[#6f655b]">{formatPrice(product.price)}</p>
+                  <p className="mt-2 min-h-[3.25rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
+                    {getLocalizedProductDescription(product, lang)}
+                  </p>
+                  <div className="mt-1 flex items-center gap-3">
+                    <Link
+                      href={buildProductHref(product)}
+                      className="text-[10px] uppercase tracking-[0.12em] text-[#7e5e42] underline underline-offset-4 hover:text-[#5f432c]"
+                    >
+                      {isSq ? "Shiko produktin" : "View product"}
+                    </Link>
+                  </div>
+                </div>
               </article>
             ))}
           </div>
@@ -135,7 +156,18 @@ export default function ServiceProductsPage() {
           <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6">
             {suggestedProducts.map((entry) => (
               <article key={`${entry.serviceId}-${entry.product.id}`} className="bg-transparent pb-4">
-                <Link href={buildProductHref(entry.product)} className="block">
+                <div
+                  className="group block cursor-pointer"
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => router.push(buildProductHref(entry.product))}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      router.push(buildProductHref(entry.product));
+                    }
+                  }}
+                >
                   <div className="relative mb-3 aspect-square w-full overflow-hidden bg-[#e6e1dc] p-4">
                     <div className="relative h-full w-full">
                       <Image
@@ -147,23 +179,23 @@ export default function ServiceProductsPage() {
                       />
                     </div>
                   </div>
-                </Link>
-                <Link href={buildProductHref(entry.product)} className="font-serif text-[1rem] leading-tight text-[#2f251d] hover:text-[#5f432c] md:text-[1.1rem]">
-                  {getLocalizedProductName(entry.product, lang)}
-                </Link>
-                <p className="mt-1 text-sm text-[#6f655b]">
-                  {entry.product.price > 0 ? formatPrice(entry.product.price) : isSq ? "Së shpejti" : "Coming soon"}
-                </p>
-                <p className="mt-2 min-h-[3rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
-                  {getLocalizedProductDescription(entry.product, lang)}
-                </p>
-                <div className="mt-1 flex items-center gap-3">
-                  <Link
-                    href={buildProductHref(entry.product)}
-                    className="text-[10px] uppercase tracking-[0.12em] text-[#7e5e42] underline underline-offset-4 hover:text-[#5f432c]"
-                  >
-                    {isSq ? "Shiko produktin" : "View product"}
-                  </Link>
+                  <span className="font-serif text-[1rem] leading-tight text-[#2f251d] transition-colors group-hover:text-[#5f432c] md:text-[1.1rem]">
+                    {getLocalizedProductName(entry.product, lang)}
+                  </span>
+                  <p className="mt-1 text-sm text-[#6f655b]">
+                    {entry.product.price > 0 ? formatPrice(entry.product.price) : isSq ? "Së shpejti" : "Coming soon"}
+                  </p>
+                  <p className="mt-2 min-h-[3rem] text-xs leading-relaxed text-[#6f655b] md:text-[13px]">
+                    {getLocalizedProductDescription(entry.product, lang)}
+                  </p>
+                  <div className="mt-1 flex items-center gap-3">
+                    <Link
+                      href={buildProductHref(entry.product)}
+                      className="text-[10px] uppercase tracking-[0.12em] text-[#7e5e42] underline underline-offset-4 hover:text-[#5f432c]"
+                    >
+                      {isSq ? "Shiko produktin" : "View product"}
+                    </Link>
+                  </div>
                 </div>
               </article>
             ))}

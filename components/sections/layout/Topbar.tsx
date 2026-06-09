@@ -12,8 +12,8 @@ const NAV_ITEMS = [
     { href: "/", label: i18n.nav.home },
     { href: "/services", label: i18n.nav.services },
     { href: "/productes", label: i18n.nav.products },
-    { href: "/about", label: i18n.nav.about },
-    { href: "/contact", label: i18n.nav.contact },
+    // { href: "/about", label: i18n.nav.about },
+    // { href: "/contact", label: i18n.nav.contact },
 ];
 
 export default function Topbar() {
@@ -101,7 +101,9 @@ export default function Topbar() {
                         </>
                     )}
                 </button>
-                <div className="flex items-center gap-0 min-[640px]:gap-4">
+
+
+                <Link href="/" className="flex items-center gap-0 min-[640px]:gap-4 cursor-pointer">
                     <Image
                         className="topbar-logo"
                         src={isTransparent ? "/white_main_logo.svg" : "/black_logo.png"}
@@ -109,38 +111,44 @@ export default function Topbar() {
                         width={90}
                         height={90}
                     />
-                    <span className={`topbar-title text-3xl font-light italic tracking-widest font-serif ${isTransparent ? "text-white drop-shadow-sm" : "text-[#2f251d]"}`}>Orivea Glow</span>
-                </div>
+
+                    <span
+                        className={`topbar-title text-3xl font-light italic tracking-widest font-serif ${isTransparent ? "text-white drop-shadow-sm" : "text-[#2f251d]"
+                            }`}
+                    >
+                        Orivea Glow
+                    </span>
+                </Link>
                 <div className="flex items-center gap-4 sm:hidden">
-                        <button
-                            type="button"
-                            onClick={() => setLang(isSq ? "en" : "sq")}
-                            className={`${isTransparent ? "text-white/90" : "text-[#4f4439]"} text-[11px] uppercase tracking-[0.14em]`}
-                            aria-label={t(lang, i18n.nav.changeLanguage)}
-                        >
-                            {isSq ? "EN" : "SQ"}
-                        </button>
-                        <a
-                            href="https://instagram.com"
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="Instagram"
-                            className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} transition-colors`}
-                        >
-                            <Camera className="h-5 w-5" aria-hidden="true" />
-                        </a>
-                        <Link
-                            href="/shporta"
-                            aria-label={t(lang, i18n.nav.cartAria)}
-                            className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} relative transition-colors`}
-                        >
-                            <ShoppingCart className="h-5 w-5" aria-hidden="true" />
-                            {totalItems > 0 && (
-                                <span className="absolute -right-2 -top-2 inline-flex min-w-4 items-center justify-center rounded-full bg-[#8e6f50] px-1 text-[9px] text-white">
-                                    {totalItems}
-                                </span>
-                            )}
-                        </Link>
+                    <button
+                        type="button"
+                        onClick={() => setLang(isSq ? "en" : "sq")}
+                        className={`${isTransparent ? "text-white/90" : "text-[#4f4439]"} text-[11px] uppercase tracking-[0.14em]`}
+                        aria-label={t(lang, i18n.nav.changeLanguage)}
+                    >
+                        {isSq ? "EN" : "AL"}
+                    </button>
+                    <a
+                        href="https://www.instagram.com/orivea_glow"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Instagram"
+                        className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} transition-colors`}
+                    >
+                        <Camera className="h-5 w-5" aria-hidden="true" />
+                    </a>
+                    <Link
+                        href="/shporta"
+                        aria-label={t(lang, i18n.nav.cartAria)}
+                        className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} relative transition-colors`}
+                    >
+                        <ShoppingCart className="h-5 w-5" aria-hidden="true" />
+                        {totalItems > 0 && (
+                            <span className="absolute -right-2 -top-2 inline-flex min-w-4 items-center justify-center rounded-full bg-[#8e6f50] px-1 text-[9px] text-white">
+                                {totalItems}
+                            </span>
+                        )}
+                    </Link>
                 </div>
 
                 <div className="topbar-links topbar-links-desktop px-8 gap-12 items-center self-center">
@@ -162,10 +170,10 @@ export default function Topbar() {
                         className={`${isTransparent ? "text-white/90 hover:text-white" : "text-[#4f4439] hover:text-[#2f251d]"} text-[11px] uppercase tracking-[0.14em] transition-colors`}
                         aria-label={t(lang, i18n.nav.changeLanguage)}
                     >
-                        {isSq ? "EN" : "SQ"}
+                        {isSq ? "EN" : "AL"}
                     </button>
                     <a
-                        href="https://instagram.com"
+                        href="https://www.instagram.com/orivea_glow"
                         target="_blank"
                         rel="noreferrer"
                         aria-label="Instagram"

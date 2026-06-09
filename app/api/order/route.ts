@@ -47,16 +47,27 @@ export async function POST(request: Request) {
       );
     }
 
-    const host = process.env.SMTP_HOST;
-    const port = process.env.SMTP_PORT;
-    const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const to = process.env.ORDER_RECEIVER_EMAIL;
-    const from = process.env.SMTP_FROM ?? user;
+    const host = process.env.SMTP_HOST?.trim();
+    const port = process.env.SMTP_PORT?.trim();
+    const user = process.env.SMTP_USER?.trim();
+    const rawPass = process.env.SMTP_PASS?.trim();
+    // Gmail App Password is 16 chars and often copied with spaces.
+    const pass = rawPass?.replace(/\s+/g, "");
+    const to = process.env.ORDER_RECEIVER_EMAIL?.trim();
+    const from = process.env.SMTP_FROM?.trim() || user;
 
-    if (!host || !port || !user || !pass || !to || !from) {
+    const missingVars = [
+      !host ? "SMTP_HOST" : null,
+      !port ? "SMTP_PORT" : null,
+      !user ? "SMTP_USER" : null,
+      !pass ? "SMTP_PASS" : null,
+      !to ? "ORDER_RECEIVER_EMAIL" : null,
+      !from ? "SMTP_FROM" : null,
+    ].filter(Boolean);
+
+    if (missingVars.length > 0) {
       return NextResponse.json(
-        { message: "Email server is not configured." },
+        { message: `Email server is not configured. Missing: ${missingVars.join(", ")}` },
         { status: 500 }
       );
     }

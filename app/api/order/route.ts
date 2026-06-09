@@ -47,8 +47,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const host = process.env.SMTP_HOST?.trim();
-    const port = process.env.SMTP_PORT?.trim();
+    const host = process.env.SMTP_HOST?.trim() || "smtp.gmail.com";
+    const port = process.env.SMTP_PORT?.trim() || "587";
     const user = process.env.SMTP_USER?.trim();
     const rawPass = process.env.SMTP_PASS?.trim();
     // Gmail App Password is 16 chars and often copied with spaces.
@@ -57,8 +57,6 @@ export async function POST(request: Request) {
     const from = process.env.SMTP_FROM?.trim() || user;
 
     const missingVars = [
-      !host ? "SMTP_HOST" : null,
-      !port ? "SMTP_PORT" : null,
       !user ? "SMTP_USER" : null,
       !pass ? "SMTP_PASS" : null,
       !to ? "ORDER_RECEIVER_EMAIL" : null,

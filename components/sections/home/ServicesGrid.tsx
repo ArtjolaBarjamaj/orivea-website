@@ -17,7 +17,7 @@ export default function ServicesGrid() {
     const isSq = lang === "sq";
 
     return (
-        <section ref={ref} className={`reveal-section w-full bg-[#fff8f5] py-10 md:py-14 ${isVisible ? "is-visible" : ""}`}>
+        <section ref={ref} className={`reveal-section w-full bg-[#fff8f5] py-10 md:py-14 is-visible anim-delay-3`}>
             <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
                 <div className="mx-auto mb-7 md:mb-10 max-w-xl text-center">
                     <p className="anim-fade-up text-xs sm:text-[11px] uppercase tracking-[0.2em] text-[#8f6f52]">{isSq ? "Shërbimet Tona" : "Our Services"}</p>

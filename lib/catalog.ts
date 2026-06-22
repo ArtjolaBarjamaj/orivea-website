@@ -140,8 +140,8 @@ const productSqMap: Record<string, { name: string; description: string; fullDesc
     name: "SAPUN I ZI AFRIKAN 200gr",
     description: "Sapun tradicional me bazë bimore, injohur per vetite pastruese dhe eksfoliuese.",
     fullDescription: "Sapuni i Zi Afrikan ishte nje sapun tradicional me bazë bimore, injohur per vetite pastruese dhe eksfoliuese.",
-    benefits: "Pastron thellesisht lëkurën .Pergatit trupin per eksfolimZbut dhe detoksifikon lëkurën.Zbut dhe detoksifikon lëkurën",
-    usage: "Aplikojeni gjate nje dushi tengrohte.Lëreni te veproje për 5-10minuta.Vazhdoni me eksfolim duke perdorur dorezën Kessa."
+    benefits: "Pastron thellësisht lëkurën. Pergatit trupin për eksfolim. Zbut dhe detoksifikon lëkurën. Zbut dhe detoksifikon lëkurën",
+    usage: "Aplikojeni gjatë një dushi të ngrohtë. Lëreni të veprojë për 5-10 minuta. Vazhdoni me eksfolim duke përdorur dorezën Kessa."
   },
   "prd-rose-water": {
     name: "Ujë Trëndafili 100ml",

@@ -30,7 +30,7 @@
 
 @media (max-width: 639px) {
   .hero-bg.mobile-home-bg {
-    background-image: url("/orivea_home_bg.png");
+    background-image: url("/phone_bg_image.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

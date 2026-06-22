@@ -73,20 +73,20 @@ export const i18n = {
           en: "See all Orivea products for your ritual.",
         },
       },
-      "/about": {
-        title: { sq: "Rreth Nesh | Orivea Glow", en: "About | Orivea Glow" },
-        description: {
-          sq: "Historia dhe filozofia pas Orivea Glow.",
-          en: "The story and philosophy behind Orivea Glow.",
-        },
-      },
-      "/contact": {
-        title: { sq: "Kontakt | Orivea Glow", en: "Contact | Orivea Glow" },
-        description: {
-          sq: "Na kontakto për pyetje rreth produkteve dhe porosive.",
-          en: "Contact us for product and order questions.",
-        },
-      },
+      // "/about": {
+      //   title: { sq: "Rreth Nesh | Orivea Glow", en: "About | Orivea Glow" },
+      //   description: {
+      //     sq: "Historia dhe filozofia pas Orivea Glow.",
+      //     en: "The story and philosophy behind Orivea Glow.",
+      //   },
+      // },
+      // "/contact": {
+      //   title: { sq: "Kontakt | Orivea Glow", en: "Contact | Orivea Glow" },
+      //   description: {
+      //     sq: "Na kontakto për pyetje rreth produkteve dhe porosive.",
+      //     en: "Contact us for product and order questions.",
+      //   },
+      // },
       "/shporta": {
         title: { sq: "Shporta | Orivea Glow", en: "Cart | Orivea Glow" },
         description: {

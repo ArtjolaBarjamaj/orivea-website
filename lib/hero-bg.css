@@ -2,7 +2,6 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background-image: url("/orivea_background_web.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -30,7 +29,6 @@
 
 @media (max-width: 639px) {
   .hero-bg.mobile-home-bg {
-    background-image: url("/phone_bg_image.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -45,5 +43,11 @@
   .hero-bg.mobile-home-bg::after {
     right: 0.8rem;
     top: 0.7rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-bg {
+    background-image: url("/orivea_background_web.png");
   }
 }

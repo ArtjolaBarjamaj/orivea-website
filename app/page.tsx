@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import ProductGrid from "../components/sections/home/ServicesGrid";
 import "../lib/hero-bg.css";
 import DesciptionGrid from "../components/sections/home/DesciptionGrid";
@@ -23,6 +24,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <section className="hero-bg mobile-home-bg relative w-full min-h-[84svh] md:min-h-[760px] flex items-center px-5 sm:px-8 md:px-16 lg:px-24 py-20 md:py-28">
+        <Image
+          src="/phone_bg_image.png"
+          alt=""
+          fill
+          priority
+          quality={65}
+          sizes="100vw"
+          className="absolute inset-0 z-[-1] object-cover md:hidden"
+        />
         <div className="pt-10 relative z-10 w-full max-w-[560px]">
           <p className="mb-7 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
             {isSq ? "Lindur në Marok" : "Born in Morocco"}
